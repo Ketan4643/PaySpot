@@ -1,22 +1,20 @@
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using PayspotAPI.Infrastructure.Entity;
+using PayspotAPI.Infrastructure.EntityConfiguration;
 
 namespace PayspotAPI.Infrastructure;
 public class DataContext : IdentityDbContext<AppUser, AppRole, int,
                            IdentityUserClaim<int>, AppUserRole, IdentityUserLogin<int>,
                            IdentityRoleClaim<int>, IdentityUserToken<int>>
 {
-    public DataContext()
-    {
-        
-    }
+    
     public DataContext(DbContextOptions option) : base(option)
     {
     }
 
-
-
+    public DbSet<Lead> Leads { get; set; }
+    
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
@@ -37,5 +35,7 @@ public class DataContext : IdentityDbContext<AppUser, AppRole, int,
             .WithOne(u => u.AppUser)
             .HasForeignKey(ur => ur.AppUserId)
             .IsRequired();
+        
+        builder.ApplyConfiguration(new LeadConfiguration());
     }
 }

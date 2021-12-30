@@ -1,0 +1,5 @@
+build/
+*.dll
+*.exe
+[Dd]bug
+[Bb]in
