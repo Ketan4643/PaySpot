@@ -1,5 +1,6 @@
 build/
 *.dll
 *.exe
-[Dd]bug
-[Bb]in
+/[Dd]bug
+/[Bb]in
+/obj
