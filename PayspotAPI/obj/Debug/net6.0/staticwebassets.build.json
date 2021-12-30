@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "JQrsRcNG76EyfvK3cia6We8zWXh6EQI8e9eCatkVEmA=",
+  "Source": "PayspotAPI",
+  "BasePath": "_content/PayspotAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
