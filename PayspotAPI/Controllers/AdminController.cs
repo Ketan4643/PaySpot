@@ -25,6 +25,7 @@ public class AdminController: BaseController
 
     [Authorize]
     [HttpGet("getstates")]
+    [ResponseCache(CacheProfileName = "120SecondProfiler")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -32,6 +33,7 @@ public class AdminController: BaseController
 
     [Authorize]
     [HttpGet("getqueries")]
+    [ResponseCache(CacheProfileName = "120SecondProfiler")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]

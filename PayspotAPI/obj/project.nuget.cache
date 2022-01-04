@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0DJKprRE4s5Oqm4x39xwAEbH15hZmDExyhcU+Mw/p33ZME7vrRJezPop7skeLwtH0TlrwVhUzfRQLffnIbUPTg==",
+  "dgSpecHash": "Jjc1WmIWlYbKSTA8OzRHCZ4bXrUYXJ26vl3bNN81F6ikrA3qsnTNWB7Cg10bc0/qL0WR/AowUvbUw4hsZ6gUow==",
   "success": true,
   "projectFilePath": "/Users/psnehi/Projects/PaySpotProjects/Payspot/PayspotAPI/PayspotAPI.csproj",
   "expectedPackageFiles": [
@@ -19,6 +19,7 @@
     "/Users/psnehi/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.2.0/microsoft.aspnetcore.http.abstractions.2.2.0.nupkg.sha512",
     "/Users/psnehi/.nuget/packages/microsoft.aspnetcore.http.features/2.2.0/microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "/Users/psnehi/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/6.0.1/microsoft.aspnetcore.identity.entityframeworkcore.6.0.1.nupkg.sha512",
+    "/Users/psnehi/.nuget/packages/microsoft.aspnetcore.mvc.versioning/5.0.0/microsoft.aspnetcore.mvc.versioning.5.0.0.nupkg.sha512",
     "/Users/psnehi/.nuget/packages/microsoft.aspnetcore.razor.language/6.0.0/microsoft.aspnetcore.razor.language.6.0.0.nupkg.sha512",
     "/Users/psnehi/.nuget/packages/microsoft.bcl.asyncinterfaces/5.0.0/microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
     "/Users/psnehi/.nuget/packages/microsoft.build/17.0.0/microsoft.build.17.0.0.nupkg.sha512",

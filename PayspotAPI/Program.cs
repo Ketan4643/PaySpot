@@ -4,7 +4,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddApplicationService(builder.Configuration);
-builder.Services.AddControllers();
+builder.Services.AddControllers(config => {
+    config.CacheProfiles.Add("120SecondProfiler", new CacheProfile { Duration = 120 }); 
+    }).AddJsonOptions(opt => {
+        opt.JsonSerializerOptions.PropertyNamingPolicy = null;
+        opt.JsonSerializerOptions.DictionaryKeyPolicy = null;
+    });
 builder.Services.AddCors();
 builder.Services.AddIdentityServices(builder.Configuration);
 
@@ -20,6 +25,8 @@ builder.Services.AddSwaggerGen(c => {
         }
     });
 });
+
+builder.Services.ConfigureVersion();
 
 var app = builder.Build();
 
