@@ -1,5 +1,5 @@
-namespace PayspotAPI.Infrastructure.Entity;
-public class Lead
+namespace PayspotAPI.DTO;
+public class QueryDto
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -10,5 +10,5 @@ public class Lead
     public DateTime CreatedOn { get; set; }
     public DateTime UpdatedOn { get; set; }
     public DateTime UpdatedBy { get; set; }
-    public bool PendingStatus { get; set; } = false;
+    public bool PendingStatus { get; set; }   
 }

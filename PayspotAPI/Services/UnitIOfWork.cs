@@ -3,6 +3,7 @@ public class UnitIOfWork : IUnitOfWork
 {
     private readonly DataContext _context;
     private IGenericRepository<Lead> _leads;
+    private IGenericRepository<StateMaster> _states;
     
     public UnitIOfWork(DataContext context)
     {
@@ -10,6 +11,7 @@ public class UnitIOfWork : IUnitOfWork
     }
 
     public IGenericRepository<Lead> Leads => _leads ??= new GenericRepository<Lead>(_context);
+    public IGenericRepository<StateMaster> States => _states ??= new GenericRepository<StateMaster>(_context);
     
     public void Dispose()
     {

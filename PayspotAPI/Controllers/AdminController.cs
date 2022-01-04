@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authorization;
+
 namespace PayspotAPI.Controllers;
 public class AdminController: BaseController 
 {
@@ -19,5 +21,25 @@ public class AdminController: BaseController
         if(result.StatusCode == StatusCodes.Status202Accepted) 
             return Accepted(System.Text.Json.JsonSerializer.Serialize(result));
         return BadRequest(System.Text.Json.JsonSerializer.Serialize(result)); 
+    }
+
+    [Authorize]
+    [HttpGet("getstates")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult> GetStates() => Ok(await _adminService.GetStates());
+
+    [Authorize]
+    [HttpGet("getqueries")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<ActionResult<List<QueryDto>>> GetQueries()
+    {
+        var queries = await _adminService.GetQueries();
+        if(queries.Count == 0 || queries == null) return NotFound("No record found");
+
+        return Ok(queries);
     }
 }

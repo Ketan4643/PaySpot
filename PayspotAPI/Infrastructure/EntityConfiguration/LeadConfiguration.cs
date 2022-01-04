@@ -6,6 +6,6 @@ public class LeadConfiguration : IEntityTypeConfiguration<Lead>
     public void Configure(EntityTypeBuilder<Lead> builder)
     {
         builder.ToTable("Leads")
-        .HasKey(x => x.Id);
+               .HasKey(x => x.Id);
     }
 }

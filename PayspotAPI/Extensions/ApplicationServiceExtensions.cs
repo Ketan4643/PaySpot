@@ -7,6 +7,7 @@ public static class ApplicationServiceExtensions
         service.AddAutoMapper(Assembly.GetExecutingAssembly());
         service.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
         service.Configure<AppSettings>(config.GetSection("AppSettings"));
+        service.Configure<JwtTokenSettings>(config.GetSection("JwtTokenSettings"));
         service.AddScoped<ITokenService, TokenService>();
         service.AddScoped<IAdminService, AdminService>();
         service.AddScoped<IUnitOfWork, UnitIOfWork>();

@@ -1,3 +1,5 @@
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore.Query;
 namespace PayspotAPI.Services
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
@@ -20,7 +22,7 @@ namespace PayspotAPI.Services
             _db.RemoveRange(entities);
         }
 
-        public async Task<T> Get(System.Linq.Expressions.Expression<Func<T, bool>> expression = null, Func<IQueryable<T>, Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<T, object>> include = null)
+        public async Task<T> Get(Expression<Func<T, bool>> expression = null, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
         {
             IQueryable<T> query = _db;
             if(include != null) query = include(query);
@@ -28,7 +30,7 @@ namespace PayspotAPI.Services
             return await query.AsNoTracking().FirstOrDefaultAsync(expression);
         }
 
-        public async Task<List<T>> GetAll(System.Linq.Expressions.Expression<Func<T, bool>> expression = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderby = null, Func<IQueryable<T>, Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<T, object>> include = null)
+        public async Task<List<T>> GetAll(Expression<Func<T, bool>> expression = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderby = null, Func<IQueryable<T>, Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<T, object>> include = null)
         {
             IQueryable<T> query = _db;
             if(expression != null) query = query.Where(expression);
@@ -37,7 +39,8 @@ namespace PayspotAPI.Services
             return await query.AsNoTracking().ToListAsync();
         }
 
-        public async Task<X.PagedList.IPagedList<T>> GetPagedList(RequestParams requestParams, Func<IQueryable<T>, Microsoft.EntityFrameworkCore.Query.IIncludableQueryable<T, object>> include = null)
+        public async Task<IPagedList<T>> GetPagedList(RequestParams requestParams, 
+                    Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null)
         {
             IQueryable<T> query = _db;
             if(include != null) query = include(query);

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PayspotAPI.Infrastructure;
 
@@ -10,9 +11,10 @@ using PayspotAPI.Infrastructure;
 namespace PayspotAPI.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220104174051_StateMasterAdded")]
+    partial class StateMasterAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.1");
@@ -318,9 +320,6 @@ namespace PayspotAPI.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
@@ -330,19 +329,10 @@ namespace PayspotAPI.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("PendingStatus")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Query")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("State")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("UpdatedBy")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("UpdatedOn")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

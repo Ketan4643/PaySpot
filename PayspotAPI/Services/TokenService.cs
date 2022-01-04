@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.ComTypes;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
@@ -7,6 +8,7 @@ public class TokenService : ITokenService
 {
     private readonly SymmetricSecurityKey _key;
     private readonly UserManager<AppUser> _userManager;
+
     public TokenService(IConfiguration config, UserManager<AppUser> userManager)
     {
         _userManager = userManager;
@@ -14,6 +16,7 @@ public class TokenService : ITokenService
     }
     public async Task<string> CreateToken(AppUser user)
     {
+        // var jwtSettings = config
         var claims = new List<Claim> {
             new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
             new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)

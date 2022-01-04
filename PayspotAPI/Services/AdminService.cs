@@ -10,13 +10,33 @@ public class AdminService : IAdminService
         _mapper = mapper;
         _context = context;
     }
+
+    public async Task<ICollection<QueryDto>> GetQueries()
+    {
+        // var queries = await _unitOfWork.Leads.GetAll();
+        
+        var queries = await _unitOfWork.Leads.GetAll();
+        return _mapper.Map<List<QueryDto>>(queries);
+    }
+
+    public async Task<ICollection<StatesDto>> GetStates()
+    {
+        var states = await _unitOfWork.States.GetAll();
+        var result = _mapper.Map<List<StatesDto>>(states);
+        return result;
+    }
+
     public async Task<CommonResponseDto> RegisterCallbackRequest(RegisterDto dto)
     {
         var lead = _mapper.Map<Lead>(dto);
-        var validateLead = await _unitOfWork.Leads.Get(x => x.Email == dto.Email);
+        lead.CreatedOn = DateTime.Now;
+        lead.PendingStatus = true;
+
+        var validateLead = await _unitOfWork.Leads.Get(x => (x.Email == dto.Email || x.Mobile == dto.Mobile));
         // var validateLead = await _context.Leads.AnyAsync(x => x.Email == dto.Email);
 
-        if(validateLead != null) return new CommonResponseDto((int)StatusCodes.Status400BadRequest,"Email already registered","");
+        if(validateLead != null) 
+            return new CommonResponseDto((int)StatusCodes.Status400BadRequest,"Email/ Mobile already registered","");
         // if(validateLead) return false;
         await _unitOfWork.Leads.Insert(lead);
         await _unitOfWork.Save();

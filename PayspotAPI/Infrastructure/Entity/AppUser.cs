@@ -12,4 +12,5 @@ public class AppUser : IdentityUser<int>
     public ICollection<AddressDetail> AddressDetails { get; set; }
     public ICollection<KycDetails> KycDetails { get; set; }
     public ICollection<AppUserRole> UserRoles { get; set; }
+    public bool IsActive { get; set; } = true;
 }

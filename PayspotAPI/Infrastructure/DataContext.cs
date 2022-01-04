@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using PayspotAPI.Infrastructure.Entity;
@@ -14,6 +15,9 @@ public class DataContext : IdentityDbContext<AppUser, AppRole, int,
     }
 
     public DbSet<Lead> Leads { get; set; }
+    public DbSet<StateMaster> StateMasters { get; set; }
+    
+    
     
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -37,5 +41,6 @@ public class DataContext : IdentityDbContext<AppUser, AppRole, int,
             .IsRequired();
         
         builder.ApplyConfiguration(new LeadConfiguration());
+        builder.ApplyConfiguration(new StateMasterConfiguration());
     }
 }
