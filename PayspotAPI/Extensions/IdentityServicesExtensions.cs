@@ -28,6 +28,7 @@ public static class IdentityServicesExtensions
                        ValidateIssuer = false
                    };
                });
+               
         return service;
     }
 }

@@ -6,6 +6,7 @@ global using System.Linq;
 global using System.Security.Cryptography;
 global using Microsoft.AspNetCore.Mvc;
 global using System.Text;
+global using System.Text.Json;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Http;
 global using AutoMapper;
