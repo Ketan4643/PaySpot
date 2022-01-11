@@ -7,30 +7,41 @@
             <mat-card-title>Contact Us</mat-card-title>
             <mat-card-subtitle>Let us know about you...</mat-card-subtitle>
             <mat-card-content>
-                <form #contactForm="ngForm">
+                <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
+                    <!-- <app-input-validation [label]='"Name"' [formControl]='registerForm.controls["name"]' [type]='"text"'></app-input-validation>
+                    <app-input-validation [label]='"Email"' [formControl]='registerForm.controls["email"]' [type]='"email"'></app-input-validation>
+                    <app-input-validation [label]='"Mobile"' [formControl]='registerForm.controls["mobile"]' [type]='"text"'></app-input-validation>
+                    <mat-form-field appearance="fill" *ngIf="states !== null">
+                        <mat-label>State</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let state of states;" value="state.id">{{state.stateName}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <app-input-validation [label]='"Query"' [formControl]='registerForm.controls["query"]' [type]='"textarea"'></app-input-validation> -->
                     <mat-form-field appearance="fill">
                         <mat-label>Name</mat-label>
-                        <input matInput required>
+                        <input matInput formControlName="name">
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Email</mat-label>
-                        <input matInput required>
+                        <input matInput formControlName="email">
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Mobile</mat-label>
-                        <input matInput required>
+                        <input matInput formControlName="mobile">
                     </mat-form-field>
-                    <mat-form-field appearance="fill">
+                    <mat-form-field appearance="fill" *ngIf="states !== null">
                         <mat-label>State</mat-label>
-                        <mat-select>
-                            <mat-option *ngFor="let state of states;" value="state">{{state}}</mat-option>
+                        <mat-select formControlName="state">
+                            <mat-option *ngFor="let state of states;" value="state.stateName">{{state.stateName}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field appearance="fill">
                         <mat-label>Enter your query here</mat-label>
-                        <textarea matInput required></textarea>
+                        <textarea matInput formControlName="query"></textarea>
                     </mat-form-field>
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block"
+                    [disabled]="!registerForm.valid">
                         Submit
                     </button>
                 </form>

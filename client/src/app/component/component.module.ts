@@ -19,6 +19,7 @@ import { DashboardComponent } from './backend/dashboard/dashboard.component';
 import { InputValidationComponent } from './_form/input-validation/input-validation.component';
 import { DateInputComponent } from './_form/date-input/date-input.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { LeadsComponent } from './backend/leads/leads.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { BrowserModule } from '@angular/platform-browser';
     LoginComponent,
     DashboardComponent,
     InputValidationComponent,
-    DateInputComponent
+    DateInputComponent,
+    LeadsComponent
   ],
   imports: [
     CommonModule,

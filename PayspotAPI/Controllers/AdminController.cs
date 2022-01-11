@@ -9,6 +9,7 @@ public class AdminController: BaseController
         _adminService = adminService;
     }
 
+    [AllowAnonymous]
     [HttpPost("register")]
     [ProducesResponseType(StatusCodes.Status202Accepted)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -23,7 +24,7 @@ public class AdminController: BaseController
         return BadRequest(System.Text.Json.JsonSerializer.Serialize(result)); 
     }
 
-    [Authorize]
+    [AllowAnonymous]
     [HttpGet("getstates")]
     [ResponseCache(CacheProfileName = "120SecondProfiler")]
     [ProducesResponseType(StatusCodes.Status200OK)]

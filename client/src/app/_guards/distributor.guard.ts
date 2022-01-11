@@ -8,17 +8,18 @@ import { AccountService } from '../_services/account.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuard implements CanActivate {
+export class DistributorGuard implements CanActivate {
   constructor(private accountService: AccountService, private toastr: ToastrService) {}
   canActivate(): Observable<boolean> {
     return this.accountService.currentUser$.pipe(
       map(user => {
-        if(user.role.includes('Admin') || user.role.includes('SuperAdmin')) {
+        if(user.role.includes("SuperDistributor") || user.role.includes('Distributor')) {
           return true;
         }
-        
-        this.toastr.error('You are not authorized for this section');
+
+        this.toastr.error("You are not authorized for this section");
       })
     )
   }
+  
 }

@@ -8,17 +8,16 @@ import { AccountService } from '../_services/account.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuard implements CanActivate {
+export class AuthGuard implements CanActivate {
   constructor(private accountService: AccountService, private toastr: ToastrService) {}
   canActivate(): Observable<boolean> {
     return this.accountService.currentUser$.pipe(
       map(user => {
-        if(user.role.includes('Admin') || user.role.includes('SuperAdmin')) {
-          return true;
-        }
-        
-        this.toastr.error('You are not authorized for this section');
+        if(user) return true;
+        this.toastr.error("Unauthorized");
       })
     )
+
   }
+  
 }

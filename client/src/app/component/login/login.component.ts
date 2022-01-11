@@ -14,7 +14,7 @@ import { AccountService } from 'src/app/_services/account.service';
 })
 export class LoginComponent implements OnInit {
   model: Login = {} as Login;
-  currentUser$ = {} as Observable<User>;
+  currentUser$: Observable<User>;
   userDto!: User;
   hide: boolean = true;
   enabled: boolean = false;
