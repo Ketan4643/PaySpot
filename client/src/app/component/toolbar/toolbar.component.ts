@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { User } from 'src/app/_models/user';
+import { AccountService } from 'src/app/_services/account.service';
 import { Usp } from '_model/usp';
 
 @Component({
@@ -7,10 +12,17 @@ import { Usp } from '_model/usp';
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
+  currentUser$: Observable<User>;
+  userDto: User;
   services: Usp[] = [];
-  constructor() { }
+  constructor(private accountService: AccountService,private router: Router) { 
+    this.currentUser$ = this.accountService.currentUser$;
+  }
 
   ngOnInit(): void {
+    this.accountService.currentUser$.subscribe(user => 
+      this.userDto = user);
+
     this.services = [
       { 
         //icon: 'https://portal2.paybingo.in/assets/menuicons/ic_aeps.png',
@@ -51,6 +63,11 @@ export class ToolbarComponent implements OnInit {
         serviceDescription: 'Book train ticket (IRCTC)'
       }
     ]
+  }
+
+  logout() {
+    this.accountService.logout();
+    this.router.navigateByUrl('/home');
   }
 
 }

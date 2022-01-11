@@ -16,32 +16,46 @@
           <!-- <span class="visually-hidden">(current)</span> -->
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="about" routerLinkActive="active">
-          <!-- <i class="fa fa-address-card"></i>&nbsp;  -->
-          About
-        </a>
-      </li>
-      <li class="nav-item dropdown" dropdown>
-        <a class="nav-link dropdown-toggle" dropdownToggle role="button">
-          Services Offered
-        </a>
-        <div class="dropdown-menu" *dropdownMenu>
-          <a class="dropdown-item" *ngFor="let service of services">
-            <!-- <img class="icon" src="{{service.icon}}">&nbsp;{{service.serviceName}} -->
-            <img class="icon" src="../../../assets/others/{{service.icon}}">&nbsp;{{service.serviceName}}
-            <!-- <small class="text-muted">{{service.serviceDescription}}</small> -->
+      <ng-container *ngIf="(currentUser$ | async) === null">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="about" routerLinkActive="active">
+            <!-- <i class="fa fa-address-card"></i>&nbsp;  -->
+            About
           </a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item dropDownItems" href="#">Explore More after login...</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="contact" routerLinkActive="active">
-          <!-- <i class="fa fa-address-book"></i>&nbsp;  -->
-          Contact Us
-        </a>
-      </li>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="contact" routerLinkActive="active">
+            <!-- <i class="fa fa-address-book"></i>&nbsp;  -->
+            Contact Us
+          </a>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="currentUser$ | async">
+        <li class="nav-item dropdown" dropdown>
+          <a class="nav-link dropdown-toggle" dropdownToggle role="button">
+            Services Offered
+          </a>
+          <div class="dropdown-menu" *dropdownMenu>
+            <a class="dropdown-item" *ngFor="let service of services">
+              <!-- <img class="icon" src="{{service.icon}}">&nbsp;{{service.serviceName}} -->
+              <img class="icon" src="../../../assets/others/{{service.icon}}">&nbsp;{{service.serviceName}}
+              <!-- <small class="text-muted">{{service.serviceDescription}}</small> -->
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item dropDownItems" href="#">Explore More after login...</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown" dropdown>
+          <a class="nav-link dropdown-toggle" dropdownToggle role="button">
+            Welcome {{userDto.username | titlecase}}
+          </a>
+          <div class="dropdown-menu" *dropdownMenu>
+            <a class="dropdown-item">View Profile</a>
+            <a class="dropdown-item" (click)="logout()">Logout</a>
+          </div>
+        </li>
+      </ng-container>
     </ul>
     <ul class="navbar-nav ms-md-auto">
       <li class="nav-item">

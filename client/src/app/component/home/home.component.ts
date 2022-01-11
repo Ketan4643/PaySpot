@@ -10,7 +10,7 @@ import { AccountService } from 'src/app/_services/account.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  currentUser$: Observable<User> = {} as Observable<User>;
+  currentUser$: Observable<User>;
   constructor(private toastr: ToastrService, 
               private accountService: AccountService) { }
 

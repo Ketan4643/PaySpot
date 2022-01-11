@@ -13,7 +13,7 @@ import { Usp } from '_model/usp';
 
 export class NavComponent implements OnInit {
   services: Usp[] = [];
-  currentUser$: Observable<User> = {} as Observable<User>;
+  currentUser$: Observable<User>;
   userDto: User = {} as User;
   constructor(private accountService: AccountService,
              private router: Router) { }

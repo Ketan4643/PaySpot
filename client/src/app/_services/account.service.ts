@@ -12,8 +12,8 @@ import { map } from 'rxjs/operators';
 
 export class AccountService {
   baseUrl = environment.baseUrl;
-  private currentSource = new ReplaySubject<User>(1);
-  currentUser$ = this.currentSource.asObservable();
+  private currentUserSource = new ReplaySubject<User>(1);
+  currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -24,10 +24,15 @@ export class AccountService {
         if(user) {
           //this.setCurrentUser(user);
           localStorage.setItem('user', JSON.stringify(user));
-          this.currentSource.next(user);
+          this.currentUserSource.next(user);
         }
       })
     );
+  }
+
+  logout() {
+    localStorage.removeItem('user');
+    this.currentUserSource.next(null);
   }
 
   // setCurrentUser(user: User) {
