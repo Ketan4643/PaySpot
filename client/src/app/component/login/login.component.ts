@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.accountService.login(this.model).subscribe(response => {
-      this.router.navigateByUrl('/adminDashboard');
+      this.router.navigateByUrl('/layout');
       // this.currentUser$.subscribe(user => {
       //   if(user) {
       //     console.log(user);

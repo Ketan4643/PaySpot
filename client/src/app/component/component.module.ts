@@ -20,6 +20,12 @@ import { InputValidationComponent } from './_form/input-validation/input-validat
 import { DateInputComponent } from './_form/date-input/date-input.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { LeadsComponent } from './backend/leads/leads.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { SidenavComponent } from './backend/layout/sidenav/sidenav.component';
+import { LayoutComponent } from './backend/layout/layout.component';
+import { HeaderComponent } from './backend/layout/header/header.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +40,13 @@ import { LeadsComponent } from './backend/leads/leads.component';
     DashboardComponent,
     InputValidationComponent,
     DateInputComponent,
-    LeadsComponent
+    LeadsComponent,
+    ConfirmDialogComponent,
+    NotFoundComponent,
+    ServerErrorComponent,
+    SidenavComponent,
+    LayoutComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -66,7 +78,18 @@ import { LeadsComponent } from './backend/leads/leads.component';
     InputValidationComponent,
     ReactiveFormsModule,
     BrowserModule,
-    FormsModule
+    FormsModule,
+    LoginComponent,
+    DashboardComponent,
+    InputValidationComponent,
+    DateInputComponent,
+    LeadsComponent,
+    ConfirmDialogComponent,
+    NotFoundComponent,
+    ServerErrorComponent,
+    SidenavComponent,
+    LayoutComponent,
+    HeaderComponent
   ]
 })
 export class ComponentModule { }
