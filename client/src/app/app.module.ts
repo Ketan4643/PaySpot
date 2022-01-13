@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './_interceptoprs/error.interceptor';
 import { JwtInterceptor } from './_interceptoprs/jwt.interceptor';
 import { LoadingInterceptor } from './_interceptoprs/loading.interceptor';
+import { AuthGuard } from './_guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoadingInterceptor } from './_interceptoprs/loading.interceptor';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
