@@ -1,24 +1,24 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { AccountService } from '../_services/account.service';
+// import { Injectable } from '@angular/core';
+// import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+// import { ToastrService } from 'ngx-toastr';
+// import { Observable } from 'rxjs';
+// import { map } from 'rxjs/operators';
+// import { AccountService } from '../_services/account.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AdminGuard implements CanActivate {
-  constructor(private accountService: AccountService, private toastr: ToastrService) {}
-  canActivate(): Observable<boolean> {
-    return this.accountService.currentUser$.pipe(
-      map(user => {
-        if(user.role.includes('Admin') || user.role.includes('SuperAdmin')) {
-          return true;
-        }
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class AdminGuard implements CanActivate {
+//   constructor(private accountService: AccountService, private toastr: ToastrService) {}
+//   canActivate(): Observable<boolean> {
+//     return this.accountService.currentUser$.pipe(
+//       map(user => {
+//         if(user.roles.includes('Admin') || user.roles.includes('SuperAdmin')) {
+//           return true;
+//         }
         
-        this.toastr.error('You are not authorized for this section');
-      })
-    )
-  }
-}
+//         this.toastr.error('You are not authorized for this section');
+//       })
+//     )
+//   }
+// }

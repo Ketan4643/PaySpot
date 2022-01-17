@@ -21,7 +21,7 @@
   </mat-menu>
 </div>
 <mat-nav-list appAccordion>
-  <mat-list-item appAccordionLink *ngFor="let menuitem of menuItems" routerLinkActive="selected">
+  <mat-list-item appAccordionLink *ngFor="let menuitem of sideMenuItems" routerLinkActive="selected">
     <a class="" appAccordionToggle [routerLink]="['./', menuitem.State]" *ngIf="menuitem.Type === 'link'" onclick="[panelOpenState = false]">
       <mat-icon>{{ menuitem.Icon }}</mat-icon>
       <span>{{ menuitem.Name }}</span>

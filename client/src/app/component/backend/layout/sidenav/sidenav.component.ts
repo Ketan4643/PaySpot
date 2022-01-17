@@ -5,7 +5,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Menu } from 'src/app/_models/menu';
+// import { Menu } from 'src/app/_models/menu';
+import { Menu, Menuitems } from 'src/app/_models/menuitems';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 
@@ -20,14 +21,15 @@ export class SidenavComponent implements OnInit, OnDestroy {
   panelOpenState = false;
   public loginUserName;
   private _mobileQueryListener: () => void;
-  public menuItems: Menu[] = [];
+  public sideMenuItems: Menu[] = [];
   imgProfileUrl: any;
 
   constructor(changeDetectorRef: ChangeDetectorRef,
     media: MediaMatcher,
     private router: Router,
     public domSanitizer: DomSanitizer,
-    private accountService: AccountService) {
+    private accountService: AccountService,
+    private menuitems :Menuitems) {
     this.mobileQuery = media.matchMedia('(min-width: 768px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -40,6 +42,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
         if (user) {
           token = user.token;
           this.loginUserName = user.username;
+          this.sideMenuItems = this.menuitems.getMenuitem();
         }
       })
     )
