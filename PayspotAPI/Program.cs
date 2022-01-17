@@ -20,16 +20,17 @@ builder.Services.AddMvc().AddJsonOptions(opt => {
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c => {
-    c.SwaggerDoc("v1", new OpenApiInfo {
-        Title = "Payspot API",
-        Version = "v1",
-        Description = "Middleware for Payspot Userinterface",
-        Contact = new OpenApiContact {
-            Name = "Prashant Kumar Snehi"
-        }
-    });
-});
+builder.Services.AddSwaggerDoc();
+// builder.Services.AddSwaggerGen(c => {
+//     c.SwaggerDoc("v1", new OpenApiInfo {
+//         Title = "Payspot API",
+//         Version = "v1",
+//         Description = "Middleware for Payspot Userinterface",
+//         Contact = new OpenApiContact {
+//             Name = "Prashant Kumar Snehi"
+//         }
+//     });
+// });
 
 builder.Services.ConfigureVersion();
 
