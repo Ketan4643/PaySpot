@@ -9,8 +9,9 @@ import { LayoutComponent } from './layout/layout.component';
 import { RouterModule } from '@angular/router';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
 import { DashboardComponent } from './layout/dashboard/dashboard.component';
-import { LeadsComponent } from './leads/leads.component';
+import { LeadsComponent } from './admin/leads/leads.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UsersComponent } from './admin/users/users.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     LayoutComponent,
     SidenavComponent,
     LeadsComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,

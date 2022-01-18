@@ -6,8 +6,9 @@ import { ContactComponent } from './component/contact/contact.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { DashboardComponent } from './components/layout/dashboard/dashboard.component';
-import { LeadsComponent } from './components/leads/leads.component';
+import { LeadsComponent } from './components/admin/leads/leads.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UsersComponent } from './components/admin/users/users.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -18,7 +19,8 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'leads', component: LeadsComponent },
-      { path: 'profile', component: UserProfileComponent }
+      { path: 'profile', component: UserProfileComponent },
+      { path: 'users', component: UsersComponent }
     ]
   }
 ];
