@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AccountService } from 'src/app/_services/account.service';
 
 @Component({
@@ -8,13 +9,15 @@ import { AccountService } from 'src/app/_services/account.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService,private router: Router) { }
 
   ngOnInit(): void {
   }
 
   public logout() {
     this.accountService.logout();
+    this.router.navigateByUrl("/");
+
   }
 
 }

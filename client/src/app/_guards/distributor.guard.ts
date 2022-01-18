@@ -13,7 +13,7 @@ export class DistributorGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.accountService.currentUser$.pipe(
       map(user => {
-        if(user.role.includes("SuperDistributor") || user.role.includes('Distributor')) {
+        if(user.roles.includes("SuperDistributor") || user.roles.includes('Distributor')) {
           return true;
         }
 

@@ -10,22 +10,17 @@ import { DefaultComponent } from './default/default.component';
 import { RouterModule } from '@angular/router';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { FooterComponent } from './footer/footer.component';
-import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from './material.module';
+import { MaterialModule } from '../components/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { DashboardComponent } from './backend/dashboard/dashboard.component';
 import { InputValidationComponent } from './_form/input-validation/input-validation.component';
 import { DateInputComponent } from './_form/date-input/date-input.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { LeadsComponent } from './backend/leads/leads.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
-import { SidenavComponent } from './backend/layout/sidenav/sidenav.component';
-import { LayoutComponent } from './backend/layout/layout.component';
-import { HeaderComponent } from './backend/layout/header/header.component';
+import { HeaderComponent } from '../components/layout/header/header.component';
 
 @NgModule({
   declarations: [
@@ -36,16 +31,11 @@ import { HeaderComponent } from './backend/layout/header/header.component';
     DefaultComponent,
     ToolbarComponent,
     FooterComponent,
-    LoginComponent,
-    DashboardComponent,
     InputValidationComponent,
     DateInputComponent,
-    LeadsComponent,
     ConfirmDialogComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    SidenavComponent,
-    LayoutComponent,
     HeaderComponent
   ],
   imports: [
@@ -73,23 +63,18 @@ import { HeaderComponent } from './backend/layout/header/header.component';
     ToolbarComponent,
     FooterComponent,
     HttpClientModule,
-    DashboardComponent,
     DateInputComponent,
     InputValidationComponent,
     ReactiveFormsModule,
     BrowserModule,
     FormsModule,
-    LoginComponent,
-    DashboardComponent,
     InputValidationComponent,
     DateInputComponent,
-    LeadsComponent,
     ConfirmDialogComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    SidenavComponent,
-    LayoutComponent,
-    HeaderComponent
+    HeaderComponent,
+    MaterialModule
   ]
 })
 export class ComponentModule { }

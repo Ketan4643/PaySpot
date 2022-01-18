@@ -1,7 +1,20 @@
-<app-toolbar></app-toolbar>
-<div class="container mt-5">
-    <div class="container" style="margin-top: 100px;">
-      <router-outlet></router-outlet>
-    </div>
+<!-- <app-toolbar></app-toolbar> -->
+<div class="container-fluid">
+  <app-navbar></app-navbar>
+  <router-outlet></router-outlet>
 </div>
-
+<!-- <div class="main-container">
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #snav id="snav" class="dark-sidebar pl-xs" 
+      [mode]="'side'"
+      fixedTopGap="0">
+      <app-sidenav></app-sidenav>
+    </mat-sidenav>
+    <mat-sidenav-content class="page-wrapper">
+      <div class="page-content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+ -->

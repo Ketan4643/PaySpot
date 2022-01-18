@@ -11,6 +11,7 @@ import { ErrorInterceptor } from './_interceptoprs/error.interceptor';
 import { JwtInterceptor } from "./_interceptoprs/JwtInterceptor";
 import { LoadingInterceptor } from './_interceptoprs/loading.interceptor';
 import { Menuitems } from './_models/menuitems';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { Menuitems } from './_models/menuitems';
     BrowserModule,
     AppRoutingModule,
     ComponentModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ComponentsModule
   ],
   providers: [
     Menuitems,
