@@ -7,5 +7,6 @@ public class AutoMapperProfiles : Profile
         CreateMap<RegisterDto, Lead>().ReverseMap();
         CreateMap<StatesDto, StateMaster>().ReverseMap();
         CreateMap<QueryDto, Lead>().ReverseMap();
+        CreateMap<NewUserDto, AppUser>().ReverseMap();
     }
 }

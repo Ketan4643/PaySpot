@@ -1,12 +1,19 @@
+using System.Reflection.Metadata;
 using Microsoft.AspNetCore.Authorization;
 
 namespace PayspotAPI.Controllers;
-public class AdminController: BaseController 
+public class AdminController : BaseController
 {
     private readonly IAdminService _adminService;
-    public AdminController(IAdminService adminService)
+    private readonly UserManager<AppUser> _userManager;
+    private readonly RoleManager<AppRole> _roleManager;
+    private readonly IMapper _mapper;
+    public AdminController(IAdminService adminService, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager, IMapper mapper)
     {
         _adminService = adminService;
+        _userManager = userManager;
+        _roleManager = roleManager;
+        _mapper = mapper;
     }
 
     [AllowAnonymous]
@@ -16,12 +23,12 @@ public class AdminController: BaseController
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult> Register([FromBody] RegisterDto registerDto)
     {
-        if(!ModelState.IsValid) return BadRequest("Invalid Data");
+        if (!ModelState.IsValid) return BadRequest("Invalid Data");
 
         var result = await _adminService.RegisterCallbackRequest(registerDto);
-        if(result.StatusCode == StatusCodes.Status202Accepted) 
+        if (result.StatusCode == StatusCodes.Status202Accepted)
             return Accepted(System.Text.Json.JsonSerializer.Serialize(result));
-        return BadRequest(System.Text.Json.JsonSerializer.Serialize(result)); 
+        return BadRequest(System.Text.Json.JsonSerializer.Serialize(result));
     }
 
     [AllowAnonymous]
@@ -38,11 +45,62 @@ public class AdminController: BaseController
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<List<QueryDto>>> GetQueries()
+    public async Task<ActionResult> GetQueries([FromQuery] RequestParams requestParams)
     {
-        var queries = await _adminService.GetQueries();
-        if(queries.Count == 0 || queries == null) return NotFound("No record found");
+        var queries = await _adminService.GetQueries(requestParams);
+        if (queries.Count == 0 || queries == null) return NotFound("No record found");
 
         return Ok(queries);
+    }
+
+    [Authorize]
+    [HttpPost("add-agent")]
+    public async Task<IActionResult> AddAgent([FromBody] NewUserDto dto)
+    {
+        var user = await _userManager.Users.AnyAsync(x => x.Email == dto.Email || x.PhoneNumber == dto.Phonenumber);
+        if (user) return BadRequest("Email or Phonenumber is already registered");
+
+        var maxId = await _userManager.Users.OrderByDescending(x => x.CreatedOn).LastOrDefaultAsync();
+        dto.Username = string.Concat("m", (maxId.Id + 1).ToString().PadLeft(5, '0'));
+
+        var userDto = _mapper.Map<AppUser>(dto);
+        var result = await _userManager.CreateAsync(userDto, ConstantValues.DefaultPasword);
+
+        if (!result.Succeeded) return BadRequest("Error registring. Please try again");
+
+        await _userManager.AddToRolesAsync(userDto, new[] { dto.Role });
+        return Ok();
+    }
+
+    [Authorize]
+    [HttpPost("update-address")]
+    public async Task<IActionResult> UpdateAddress([FromBody] KycDocumentDto dto)
+    {
+        var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == dto.Username);
+        if (user == null) return BadRequest("User not found");
+
+        user.KycDetails.Add(new KycDetails{
+            KycType = dto.KycType,
+            DocumentNumber = dto.DocumentNumber,
+
+        });
+
+        return Ok(await _userManager.UpdateAsync(user));
+    }
+
+    [Authorize]
+    [HttpPost("update-kyc")]
+    public async Task<IActionResult> UpdateKycDocuments([FromBody] KycDocumentDto dto)
+    {
+        var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == dto.Username);
+        if (user == null) return BadRequest("User not found");
+
+        user.KycDetails.Add(new KycDetails{
+            KycType = dto.KycType,
+            DocumentNumber = dto.DocumentNumber,
+
+        });
+
+        return Ok(await _userManager.UpdateAsync(user));
     }
 }

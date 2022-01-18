@@ -1,6 +1,3 @@
-using PayspotAPI.Helpers;
-using PayspotAPI.Infrastructure.Entity;
-
 namespace PayspotAPI.Infrastructure.Data;
 public static class UserSeedData
 {

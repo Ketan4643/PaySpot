@@ -11,12 +11,13 @@ public class AdminService : IAdminService
         _context = context;
     }
 
-    public async Task<ICollection<QueryDto>> GetQueries()
+    public async Task<ICollection<QueryDto>> GetQueries(RequestParams requestParams)
     {
         // var queries = await _unitOfWork.Leads.GetAll();
         
-        var queries = await _unitOfWork.Leads.GetAll();
-        return _mapper.Map<List<QueryDto>>(queries);
+        var queries = await _unitOfWork.Leads.GetPagedList(requestParams);
+        var result = _mapper.Map<IList<QueryDto>>(queries);
+        return result;
     }
 
     public async Task<ICollection<StatesDto>> GetStates()
