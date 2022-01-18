@@ -34,16 +34,9 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.accountService.login(this.model).subscribe(response => {
+      debugger
       this.router.navigateByUrl('/dashboard');
-      // this.currentUser$.subscribe(user => {
-      //   if(user) {
-      //     console.log(user);
-      //     this.userDto = user;
-      //   }
-      // })
       this.userDto = JSON.parse(localStorage.getItem('user') || '{}');
-      console.log(this.userDto.username);
-      // this.userDto = JSON.parse(localStorage.getItem('user') || '{}');
       this.toastr.success('Welcome ' + this.userDto.username);
     })
   }
