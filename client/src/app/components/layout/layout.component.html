@@ -1,3 +1,26 @@
+<div class="root">
+  <nav class="nav bg-primary text-light">
+    <!-- <h1 class="text-white">Payspot</h1> -->
+    <!-- <a [routerLink]="[ '/booking' ]">Booking</a> -->
+    <!-- <img src="../../../assets/payspot/MainLogo.jpeg" style="width: 50px; height: 50px; border-radius: 50%;" class="mt" alt=""> -->
+    <button mat-mini-fab color="white" class="mt ml" aria-label="Example icon button with a menu icon"
+      (click)="sideNavToggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </nav>
+  <div class="container">
+    <div class="sidebar" *ngIf="showSideNav">
+      <ul>
+        <li>Dashboard</li>
+        <li>User Management</li>
+      </ul>
+    </div>
+    <main class="main">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>
+
 <!-- <mat-drawer-container class="example-container">
   <mat-drawer mode="side" opened>
     <app-sidenav></app-sidenav>
@@ -7,7 +30,7 @@
     <router-outlet></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container> -->
-<mat-drawer-container class="example-container" autosize>
+<!-- <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <app-sidenav></app-sidenav>
     <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
@@ -22,5 +45,4 @@
     </button>
   </div>
 
-</mat-drawer-container>
-
+</mat-drawer-container> -->

@@ -2,13 +2,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { map, switchAll } from 'rxjs/operators';
 import { States } from 'src/app/_models/states';
-import { QueryModel } from 'src/app/_models/_admin/query-registration';
 import { AdminService } from 'src/app/_services/admin.service';
 import Swal from 'sweetalert2';
-
-
 
 @Component({
   selector: 'app-contact',
@@ -22,14 +18,17 @@ export class ContactComponent implements OnInit {
   validationError: string[] = [];
 
   constructor(private adminService: AdminService,
-              private toastr: ToastrService,
-              private fb: FormBuilder,
-              private router: Router) { 
-    this.adminService.getStates().subscribe(states => this.states = states);
+    private toastr: ToastrService,
+    private fb: FormBuilder,
+    private router: Router) {
+    this.adminService.getStates().subscribe(states => {
+      this.states = states;
+      // this.states = this.states.filter(option => option.stateName.startsWith("A"));
+    });
   }
 
   ngOnInit(): void {
-    this.initilizeForm();    
+    this.initilizeForm();
     // this.states = [
     //   'Arunachal Pradesh',
     //   'Bihar',
@@ -56,7 +55,7 @@ export class ContactComponent implements OnInit {
 
   matchValue(matchTo: string): ValidatorFn {
     return (control: AbstractControl) => {
-      return control?.value === control?.parent?.controls[matchTo]?.value ? null : {isMatching: true}
+      return control?.value === control?.parent?.controls[matchTo]?.value ? null : { isMatching: true }
     }
   }
 
@@ -80,9 +79,14 @@ export class ContactComponent implements OnInit {
         showConfirmButton: false,
         timer: 2000
       })
-      this.initilizeForm();      
+      this.initilizeForm();
     })
   }
 
-
+  filterFunction(opt: string) {
+    console.log(opt)
+    this.states = this.states.filter(option => option.stateName.startsWith(opt));
+    console.log(this.states);
+    return this.states;
+  }
 }

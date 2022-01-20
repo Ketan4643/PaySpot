@@ -47,9 +47,7 @@ import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
-@NgModule({
-  declarations: [],
-  imports: [
+const MaterialComponents = [
     CommonModule,
     A11yModule,
     CdkAccordionModule,
@@ -97,54 +95,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     PortalModule,
     ScrollingModule,
     MatFormFieldModule
+]
+
+@NgModule({
+  declarations: [],
+  imports: [
+    MaterialComponents
   ],
   exports: [
-    A11yModule,
-    CdkAccordionModule,
-    ClipboardModule,
-    CdkStepperModule,
-    CdkTableModule,
-    CdkTreeModule,
-    DragDropModule,
-    MatAutocompleteModule,
-    MatBadgeModule,
-    MatBottomSheetModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    MatTreeModule,
-    OverlayModule,
-    PortalModule,
-    ScrollingModule,
-    MatFormFieldModule
+    MaterialComponents
   ]
 })
 export class MaterialModule { }

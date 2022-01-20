@@ -1,11 +1,11 @@
 <div class="form-group">
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="outline">
         <mat-label>{{label}}</mat-label>
         <input matInput 
             [class.is-valid]="ngControl.valid"
             [class.is-invalid]="ngControl.invalid"
             type="{{type}}"
-            class="form-control"
+            class="form-control w-100"
             [formControl]="ngControl.control"
             placeholder="{{label}}">
             <div class="invalid-feedback" *ngIf="ngControl.control.errors?.required">
