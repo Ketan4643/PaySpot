@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices.ComTypes;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
@@ -8,11 +7,14 @@ public class TokenService : ITokenService
 {
     private readonly SymmetricSecurityKey _key;
     private readonly UserManager<AppUser> _userManager;
+    private readonly IJwtTokenSettings _jwtTokenSettings;
 
-    public TokenService(IConfiguration config, UserManager<AppUser> userManager)
+    public TokenService(IConfiguration config, UserManager<AppUser> userManager, IJwtTokenSettings jwtTokenSettings)
     {
         _userManager = userManager;
-        _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
+        _jwtTokenSettings = jwtTokenSettings;
+        // _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
+        _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtTokenSettings.TokenKey));
     }
     public async Task<string> CreateToken(AppUser user)
     {
@@ -29,7 +31,7 @@ public class TokenService : ITokenService
 
         var tokenDescriptor = new SecurityTokenDescriptor {
             Subject = new ClaimsIdentity(claims),
-            Expires = DateTime.Now.AddDays(7),
+            Expires = DateTime.Now.AddDays(_jwtTokenSettings.LifeSpan),
             SigningCredentials = creds
         };
 

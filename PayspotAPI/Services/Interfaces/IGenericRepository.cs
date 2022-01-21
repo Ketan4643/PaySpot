@@ -1,7 +1,5 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore.Query;
-using X.PagedList;
-using PayspotAPI.Models;
 
 namespace PayspotAPI.Services.Interfaces;
 public interface IGenericRepository<T> where T : class

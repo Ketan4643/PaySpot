@@ -1,4 +1,4 @@
-namespace PayspotAPI.Services.Interaces;
+namespace PayspotAPI.Services.Interfaces;
 public interface ITokenService
 {
     Task<string> CreateToken(AppUser user);

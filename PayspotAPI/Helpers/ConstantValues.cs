@@ -46,3 +46,9 @@ public enum Nominee
     Relative,
     Other
 }
+
+public enum ApiMode 
+{
+    L,  // Live
+    D   // Development
+}

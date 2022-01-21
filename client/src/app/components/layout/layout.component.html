@@ -2,18 +2,24 @@
   <nav class="nav bg-primary text-light">
     <!-- <h1 class="text-white">Payspot</h1> -->
     <!-- <a [routerLink]="[ '/booking' ]">Booking</a> -->
-    <!-- <img src="../../../assets/payspot/MainLogo.jpeg" style="width: 50px; height: 50px; border-radius: 50%;" class="mt" alt=""> -->
-    <button mat-mini-fab color="white" class="mt ml" aria-label="Example icon button with a menu icon"
+    <img src="../../../assets/payspot/MainLogo.jpeg" style="width: 50px; height: 50px; border-radius: 50%;" class="mt" alt="">
+    <button mat-icon-button color="white" class="mt ml" aria-label="Example icon button with a menu icon"
       (click)="sideNavToggle()">
       <mat-icon>menu</mat-icon>
     </button>
   </nav>
   <div class="container">
     <div class="sidebar" *ngIf="showSideNav">
-      <ul>
-        <li>Dashboard</li>
-        <li>User Management</li>
-      </ul>
+      <!-- <nav class="navbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard"></a> Dashboard
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/leads"></a> Queries
+          </li>
+        </ul>
+      </nav> -->
     </div>
     <main class="main">
       <router-outlet></router-outlet>

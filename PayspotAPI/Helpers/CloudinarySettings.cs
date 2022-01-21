@@ -1,5 +1,5 @@
 namespace PayspotAPI.Helpers;
-public class CloudinarySettings
+public class CloudinarySettings : ICloudinarySettings
 {
     public string CloudName { get; set; }
     public string ApiKey { get; set; }

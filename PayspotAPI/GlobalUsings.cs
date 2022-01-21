@@ -22,12 +22,12 @@ global using PayspotAPI.Infrastructure.Entity;
 global using PayspotAPI.Infrastructure;
 global using PayspotAPI.Helpers;
 global using PayspotAPI.Infrastructure.Data;
-global using PayspotAPI.Services.Interaces;
+global using PayspotAPI.Services.Interfaces;
 global using PayspotAPI.Services;
 global using PayspotAPI.DTO;
 global using PayspotAPI.DTO.Admin;
 global using PayspotAPI.Extensions;
-global using PayspotAPI.Services.Interfaces;
 global using PayspotAPI.Models;
 global using X.PagedList;
+global using PayspotAPI.Helpers.Interfaces;
 
