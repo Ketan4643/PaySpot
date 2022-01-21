@@ -4,8 +4,6 @@ import { environment } from 'src/environments/environment';
 import { Querydto } from '../_models/querydto';
 import { States } from '../_models/states';
 import { QueryModel } from '../_models/_admin/query-registration';
-import { IAdminService } from './abstract/admin-iservice';
-import { IApiManagerService } from './abstract/api-manager-iservice';
 import { ApiManagerService } from './api-manager.service';
 
 @Injectable({

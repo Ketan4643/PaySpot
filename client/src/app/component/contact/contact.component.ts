@@ -1,10 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { States } from 'src/app/_models/states';
 import { AdminService } from 'src/app/_services/admin.service';
 import Swal from 'sweetalert2';
+import { CommonErrorStateMatcher } from 'src/app/_helpers/common-error-state-matcher';
 
 @Component({
   selector: 'app-contact',
@@ -16,6 +17,7 @@ export class ContactComponent implements OnInit {
   states: States[] = [];
   registerForm: FormGroup;
   validationError: string[] = [];
+  customErrorStateMatcher: CommonErrorStateMatcher = new CommonErrorStateMatcher();
 
   constructor(private adminService: AdminService,
     private toastr: ToastrService,
@@ -61,11 +63,11 @@ export class ContactComponent implements OnInit {
 
   initilizeForm() {
     this.registerForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required]],
-      mobile: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      state: ['', [Validators.required]],
-      query: ['', [Validators.required, Validators.minLength(3)]]
+      name: [null, [Validators.required, Validators.minLength(3), Validators.pattern('^[A-Za-z. ]*$')]],
+      email: [null, [Validators.required, Validators.email]],
+      mobile: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]*$')]],
+      state: [null, [Validators.required]],
+      query: [null, [Validators.required, Validators.minLength(3)]]
     })
   }
 
@@ -79,7 +81,7 @@ export class ContactComponent implements OnInit {
         showConfirmButton: false,
         timer: 2000
       })
-      this.initilizeForm();
+      this.router.navigateByUrl('/login');
     })
   }
 
@@ -88,5 +90,48 @@ export class ContactComponent implements OnInit {
     this.states = this.states.filter(option => option.stateName.startsWith(opt));
     console.log(this.states);
     return this.states;
+  }
+
+  getFormControl(controlName: string): FormControl {
+    return this.registerForm.get(controlName) as FormControl;
+  }
+
+  getErrorMessage(controlName: string, errorType: string) {
+    switch(controlName)
+    {
+      case "name":
+      {
+        if(errorType === "required") return "You must specify <string>Name</strong>";
+        else if(errorType === "minlength") return "Name length must be at least of 3 characters";
+        else if(errorType === "pattern") return "Name can't have digits or specical characters";
+        else return "";
+      }
+      case "email":
+      {
+        if(errorType === "required") return "You must specify <string>Email</strong>";
+        else if(errorType === "email") return "Invalid email like <strong>example@domain.com</strong>";
+        else return "";
+      }
+      case "mobile":
+      {
+        if(errorType === "required") return "You must specify <string>Mobile Number</strong>";
+        else if(errorType === "minlength") return "Name length must be at least of 10 characters";
+        else if(errorType === "maxlength") return "Name length must be at max of 10 characters";
+        else if(errorType === "patter") return "Invalid mobile number";
+        else return "";
+      }
+      case "state":
+      {
+        if(errorType === "required") return "You must select <string>State</strong>";
+        else return "";
+      }
+      case "query":
+      {
+        if(errorType === "required") return "You must enter something in <string>Querybox</strong>";
+        else if(errorType === "email") return "Invalid email like <strong>example@domain.com</strong>";
+        else return "";
+      }
+      default: return "";
+    }
   }
 }
