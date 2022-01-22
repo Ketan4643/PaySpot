@@ -18,7 +18,7 @@
                         <mat-form-field appearance="fill" *ngIf="states !== null">
                             <mat-label>State</mat-label>
                             <mat-select>
-                                <mat-option *ngFor="let state of states;" value="state.id">{{state.stateName}}
+                                <mat-option *ngFor="let state of states;" value="state.stateName">{{state.stateName}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -60,7 +60,7 @@
                             <mat-label>Enter your query here</mat-label>
                             <textarea matInput formControlName="query"></textarea>
                             <mat-error *ngIf="getFormControl('query').hasError('required')" [innerHTML]="getErrorMessage('query','required')"></mat-error>
-                        </mat-form-field>
+                        </mat-form-field> 
                         <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!registerForm.valid">
                             Submit
                         </button>

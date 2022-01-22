@@ -74,24 +74,19 @@ public class AdminController : BaseController
 
     [Authorize]
     [HttpPost("update-address")]
-    public async Task<IActionResult> UpdateAddress([FromBody] KycDocumentDto dto)
+    public async Task<IActionResult> UpdateAddress([FromBody] AddressDto dto)
     {
-        var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == dto.Username);
-        if (user == null) return BadRequest("User not found");
-
-        user.KycDetails.Add(new KycDetails{
-            KycType = dto.KycType,
-            DocumentNumber = dto.DocumentNumber,
-
-        });
-
-        return Ok(await _userManager.UpdateAsync(user));
+        dto.LoginUser = User.GetUsername();
+        var result = await _adminService.UpdateAddressAsync(dto);
+        if(result.StatusCode == StatusCodes.Status400BadRequest) return BadRequest("User not found");
+        return Ok(result);
     }
 
     [Authorize]
     [HttpPost("update-kyc")]
     public async Task<IActionResult> UpdateKycDocuments([FromBody] KycDocumentDto dto)
     {
+        var loginUser = User.GetUsername();
         var user = await _userManager.Users.FirstOrDefaultAsync(x => x.UserName == dto.Username);
         if (user == null) return BadRequest("User not found");
 
