@@ -16,11 +16,11 @@ export class AdminService {
     this._baseUrl = environment.baseUrl;
   }
   getQueries() {
-    return this.http.get<Querydto[]>(this._baseUrl + 'admin/getqueries');
+    return this.http.get<Querydto[]>(this._baseUrl + 'admin/get-queries');
   }
 
   getStates() {
-    return this.http.get<States[]>(this._baseUrl + 'admin/getstates');
+    return this.http.get<States[]>(this._baseUrl + 'admin/get-states');
   }
 
   register(model: QueryModel) {

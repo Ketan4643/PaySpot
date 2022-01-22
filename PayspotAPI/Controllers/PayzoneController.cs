@@ -14,6 +14,6 @@ public class PayzoneController : BaseController
     }
 
     [HttpGet]
-    [Route("gettoken")]
+    [Route("get-token")]
     public async Task<IActionResult> Login() => Ok(await _payzoneServices.PayzoneLoginServiceAsync());
 }

@@ -1,9 +1,9 @@
-<div class="container">
-    <div class="row mt-2">
-        <div class="col-md-6 text-center">
+<div class="container mt-5">
+    <div class="row mt-2 flex justify-content-center">
+        <!-- <div class="col-md-3 text-center">
             <img src="../../../assets/payspot/MainLogoBig.jpeg" width="80%" height="auto;">
-        </div>
-        <div class="col-md-6 contact">
+        </div> -->
+        <div class="col-md-9 contact">
             <mat-card>
                 <mat-card-title>Contact Us</mat-card-title>
                 <mat-card-subtitle>Let us know about you...</mat-card-subtitle>
@@ -27,43 +27,63 @@
                         <mat-form-field appearance="fill">
                             <mat-label>Name</mat-label>
                             <input matInput formControlName="name" [errorStateMatcher]="customErrorStateMatcher">
-                            <mat-error *ngIf="getFormControl('name').hasError('required')" [innerHTML]="getErrorMessage('name','required')"></mat-error>
-                            <mat-error *ngIf="getFormControl('name').hasError('minlength')" [innerHTML]="getErrorMessage('name','minlength')"></mat-error>
-                            <mat-error *ngIf="getFormControl('name').hasError('pattern')" [innerHTML]="getErrorMessage('name','pattern')"></mat-error>
+                            <mat-error *ngIf="getFormControl('name').hasError('required')"
+                                [innerHTML]="getErrorMessage('name','required')"></mat-error>
+                            <mat-error *ngIf="getFormControl('name').hasError('minlength')"
+                                [innerHTML]="getErrorMessage('name','minlength')"></mat-error>
+                            <mat-error *ngIf="getFormControl('name').hasError('pattern')"
+                                [innerHTML]="getErrorMessage('name','pattern')"></mat-error>
                         </mat-form-field>
                         <mat-form-field appearance="fill">
                             <mat-label>Email</mat-label>
                             <input matInput formControlName="email">
-                            <mat-error *ngIf="getFormControl('email').hasError('required')" [innerHTML]="getErrorMessage('email','required')"></mat-error>
-                            <mat-error *ngIf="getFormControl('email').hasError('email')" [innerHTML]="getErrorMessage('email','email')"></mat-error>
+                            <mat-error *ngIf="getFormControl('email').hasError('required')"
+                                [innerHTML]="getErrorMessage('email','required')"></mat-error>
+                            <mat-error *ngIf="getFormControl('email').hasError('email')"
+                                [innerHTML]="getErrorMessage('email','email')"></mat-error>
                         </mat-form-field>
                         <mat-form-field appearance="fill">
                             <mat-label>Mobile</mat-label>
                             <input matInput formControlName="mobile">
-                            <mat-error *ngIf="getFormControl('mobile').hasError('required')" [innerHTML]="getErrorMessage('mobile','required')"></mat-error>
-                            <mat-error *ngIf="getFormControl('mobile').hasError('minlength')" [innerHTML]="getErrorMessage('mobile','minlength')"></mat-error>
-                            <mat-error *ngIf="getFormControl('mobile').hasError('maxlength')" [innerHTML]="getErrorMessage('mobile','maxlength')"></mat-error>
-                            <mat-error *ngIf="getFormControl('mobile').hasError('pattern')" [innerHTML]="getErrorMessage('mobile','pattern')"></mat-error>
+                            <mat-error *ngIf="getFormControl('mobile').hasError('required')"
+                                [innerHTML]="getErrorMessage('mobile','required')"></mat-error>
+                            <mat-error *ngIf="getFormControl('mobile').hasError('minlength')"
+                                [innerHTML]="getErrorMessage('mobile','minlength')"></mat-error>
+                            <mat-error *ngIf="getFormControl('mobile').hasError('maxlength')"
+                                [innerHTML]="getErrorMessage('mobile','maxlength')"></mat-error>
+                            <mat-error *ngIf="getFormControl('mobile').hasError('pattern')"
+                                [innerHTML]="getErrorMessage('mobile','pattern')"></mat-error>
                         </mat-form-field>
                         <mat-form-field appearance="fill" *ngIf="states !== null">
                             <mat-label>State</mat-label>
                             <mat-select formControlName="state">
                                 <!-- <mat-optgroup label="A"> -->
-                                <mat-option *ngFor="let state of states" 
-                                    value="state.stateName">{{state.stateName}}
+                                <mat-option *ngFor="let state of states" value="state.stateName">{{state.stateName}}
                                 </mat-option>
                                 <!-- </mat-optgroup> -->
                             </mat-select>
-                            <mat-error *ngIf="getFormControl('state').hasError('required')" [innerHTML]="getErrorMessage('state','required')"></mat-error>
+                            <mat-error *ngIf="getFormControl('state').hasError('required')"
+                                [innerHTML]="getErrorMessage('state','required')"></mat-error>
                         </mat-form-field>
                         <mat-form-field appearance="fill">
                             <mat-label>Enter your query here</mat-label>
                             <textarea matInput formControlName="query"></textarea>
-                            <mat-error *ngIf="getFormControl('query').hasError('required')" [innerHTML]="getErrorMessage('query','required')"></mat-error>
-                        </mat-form-field> 
-                        <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!registerForm.valid">
-                            Submit
-                        </button>
+                            <mat-error *ngIf="getFormControl('query').hasError('required')"
+                                [innerHTML]="getErrorMessage('query','required')"></mat-error>
+                        </mat-form-field>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-primary btn-lg btn-block mt-3" routerLink="/login">
+                                    Sign-In
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block mt-3"
+                                    [disabled]="!registerForm.valid">
+                                    Submit Query
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </mat-card-content>
                 <img mat-card-image>

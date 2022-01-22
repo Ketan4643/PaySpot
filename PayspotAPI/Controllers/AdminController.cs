@@ -32,7 +32,7 @@ public class AdminController : BaseController
     }
 
     [AllowAnonymous]
-    [HttpGet("getstates")]
+    [HttpGet("get-states")]
     [ResponseCache(CacheProfileName = "120SecondProfiler")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -40,7 +40,7 @@ public class AdminController : BaseController
     public async Task<ActionResult> GetStates() => Ok(await _adminService.GetStates());
 
     [Authorize]
-    [HttpGet("getqueries")]
+    [HttpGet("get-queries")]
     [ResponseCache(CacheProfileName = "120SecondProfiler")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
