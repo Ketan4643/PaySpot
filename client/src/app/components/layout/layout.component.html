@@ -1,64 +1,115 @@
 <div class="root">
-  <nav class="nav navbar navbar-expand-lg">
-    <!-- <h1 class="text-white">Payspot</h1> -->
-    <button mat-icon-button color="white" class="mt ml" aria-label="Icon button with a menu icon"
-      (click)="sideNavToggle()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <img src="../../../assets/payspot/MainLogo.jpeg" style="width: 50px; height: 50px; border-radius: 50%;" class="mt"
-      alt="Payspot">
-    <ng-container *ngIf="currentUser != null" class="text-light bg-primary">
-      <app-navbar></app-navbar>
-      <!-- <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item dropdown" dropdown>
-          <a class="nav-link dropdown-toggle" dropdownToggle role="button">
-            Welcome {{currentUser.username | titlecase}}
-          </a>
-          <div class="dropdown-menu" *dropdownMenu>
-            <a class="dropdown-item" routerLink="/profile" routerLinkActive="active">View Profile</a>
-            <a class="dropdown-item" (click)="logout()">Logout</a>
-          </div>
-        </li>
-      </ul> -->
-    </ng-container>
-  </nav>
-  <div class="custom-container">
-    <div class="sidebar" *ngIf="showSideNav">
-      <div class="d-flex justify-content-center">
-        <div class="col-md-12 text-center">
-          <img src="../../../assets/user.png" style="width: 100px; height: 100px; border-radius: 50%;" class="mt"
-            alt="Payspot">
-        </div>
-      </div>
+  <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" class="nav">
+    <!-- left box of toolbar starts -->
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-icon-button (click)="sideNavToggle()" matTooltip="Sidebar">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Dashboard" (click)="navigation('dashboard')">
+        <mat-icon>home</mat-icon>
+      </button>
+      <span></span>
     </div>
-    <main class="main">
+    <!-- left box of toolbar ends -->
+    <!-- center box of toolbar starts -->
+    <div>
+      <button type="button" mat-stroked-button (click)="showStatistics = !showStatistics" fxHide.lt-md="true"
+        matTooltip="click to show/hide expension">
+        <mat-icon>analytics</mat-icon>
+        <span class="ml mr">Statistics</span>
+        <mat-icon class="rotatable" [ngClass]="{ 'rotate-180': showStatistics}">keyboard_arrow_down</mat-icon>
+      </button>
+    </div>
+    <!-- center box of toolbar ends -->
+
+    <!-- right box of toolbar starts -->
+    <div>
+      <button type="button" mat-stroked-button class="mr" [matMenuTriggerFor]="user" fxHide.lt-md="true"
+        matTooltip="User">
+        <mat-icon>account_circle</mat-icon> {{currentUser.username | titlecase}}
+      </button>
+      <button type="button" mat-icon-button [matMenuTriggerFor]="notification" class="ml mr" matTooltip="Notifications">
+        <mat-icon matBadge="2" matBadgeColor="accent">notifications</mat-icon>
+      </button>
+      <button type="button" mat-icon-button [matMenuTriggerFor]="topmenu" matTooltip="Menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+    <!-- right box of toolbar ends -->
+
+    <mat-menu #user="matMenu">
+      <button mat-menu-item (click)="navigation('profile')">Profile</button>
+      <button mat-menu-item (click)="navigation('change-password')">Change Password</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+
+    <mat-menu #topmenu="matMenu">
+      <button (click)="navigation('dashboard')" mat-menu-item>Dashborad</button>
+      <button mat-menu-item>Transactions</button>
+      <button mat-menu-item [matMenuTriggerFor]="user">{{currentUser.username | titlecase}}</button>
+      <button mat-menu-item (click)="showStatistics = !showStatistics">Statistics</button>
+    </mat-menu>
+    <mat-menu #notification="matMenu">
+      <button mat-menu-item>Transaction Id: 5372843 is successfull</button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>Transaction Id: 12345 is Pending</button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item>You have received topup of 5 L</button>
+    </mat-menu>
+  </mat-toolbar>
+  <mat-expansion-panel [expanded]="showStatistics">
+    <div class="mt" fxLayout="row" fxLayoutAlign="space-evenly center">
+      <div class="font-weight-bold">Statistics</div>
+      <div matRipple class="p-10 hand-icon">Today: 1,23,000/-</div>
+      <div matRipple class="p-10 hand-icon">This week: 7,42,000/-</div>
+      <div matRipple class="p-10 hand-icon">This month: 24,75,000/-</div>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-drawer-container class="drawer-container">
+
+    <mat-drawer #drawer class="drawer" mode="side" opened="true" *ngIf="showSideNav">
+      <div class="user-logo">
+        <mat-icon class="user-icon">person_outline</mat-icon>
+        <div class="v-align-middle">{{currentUser.username | titlecase}}</div>
+      </div>
+      <mat-divider></mat-divider>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="linkActive">
+          <mat-icon>dashboard</mat-icon>&nbsp;Dashboard
+        </a>
+        <a mat-list-item>
+          <mat-icon>person_outline</mat-icon>
+          &nbsp;Users
+          <mat-icon class="rotatable" [ngClass]="{ 'rotate-180': showStatistics}">keyboard_arrow_down</mat-icon>
+        </a>
+        <a mat-list-item routerLink="/leads" routerLinkActive="linkActive">
+          <mat-icon>person_outline</mat-icon>&nbsp;Reports
+        </a>
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="linkActive">
+          <mat-icon>payment</mat-icon>&nbsp;payment
+        </a>
+      </mat-nav-list>
+    </mat-drawer>
+
+    <mat-drawer #drawerMini class="drawerMini" mode="side" opened="true" *ngIf="!showSideNav">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="linkActive">
+          <mat-icon>dashboard</mat-icon>
+        </a>
+        <a mat-list-item>
+          <mat-icon>person_outline</mat-icon>
+        </a>
+        <a mat-list-item routerLink="/leads" routerLinkActive="linkActive">
+          <mat-icon>person_outline</mat-icon>
+        </a>
+        <a mat-list-item routerLink="/dashboard" routerLinkActive="linkActive">
+          <mat-icon>payment</mat-icon>
+        </a>
+      </mat-nav-list>
+    </mat-drawer>
+    <div class="main">
       <router-outlet></router-outlet>
-    </main>
-  </div>
+    </div>
+  </mat-drawer-container>
 </div>
-
-<!-- <mat-drawer-container class="example-container">
-  <mat-drawer mode="side" opened>
-    <app-sidenav></app-sidenav>
-  </mat-drawer>
-  <mat-drawer-content>
-    <app-navbar></app-navbar>
-    <router-outlet></router-outlet>
-  </mat-drawer-content>
-</mat-drawer-container> -->
-<!-- <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <app-sidenav></app-sidenav>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
-  </mat-drawer>
-
-  <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      <i class="navbar-toggler-icon"></i>SideNav
-    </button>
-  </div>
-
-</mat-drawer-container> -->

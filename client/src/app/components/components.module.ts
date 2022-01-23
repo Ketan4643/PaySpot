@@ -12,6 +12,8 @@ import { DashboardComponent } from './layout/dashboard/dashboard.component';
 import { LeadsComponent } from './admin/leads/leads.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UsersComponent } from './admin/users/users.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { UsersComponent } from './admin/users/users.component';
     SidenavComponent,
     LeadsComponent,
     UserProfileComponent,
-    UsersComponent
+    UsersComponent,
+    ToolbarComponent
   ],
   imports: [
     CommonModule,
@@ -31,6 +34,7 @@ import { UsersComponent } from './admin/users/users.component';
     ReactiveFormsModule,
     BsDropdownModule,
     RouterModule,
+    FlexLayoutModule
   ],
   exports: [
     NavbarComponent,
@@ -42,7 +46,8 @@ import { UsersComponent } from './admin/users/users.component';
     LayoutComponent,
     SidenavComponent,
     LeadsComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    FlexLayoutModule
   ]
 })
 export class ComponentsModule { }

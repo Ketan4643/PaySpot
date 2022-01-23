@@ -12,12 +12,14 @@ import { AccountService } from 'src/app/_services/account.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   model: Login = {} as Login;
   currentUser$: Observable<User>;
   userDto!: User;
   hide: boolean = true;
   enabled: boolean = false;
+  loginForm: NgForm;
 
   constructor(private toastr: ToastrService, 
               private accountService: AccountService, 
@@ -25,11 +27,19 @@ export class LoginComponent implements OnInit {
   
   ngOnInit(): void {  
     this.currentUser$ = this.accountService.currentUser$;
+    // this.formValidation();
   }
 
-  // login(f: NgForm) {
+  // formValidation(f: NgForm) {
   //   console.log(this.model);
-  //   f.valid ? this.toastr.success(JSON.stringify(this.model)) : this.toastr.error('invalid Username and Password');
+  //   // f.valid ? this.toastr.success(JSON.stringify(this.model)) : this.toastr.error('invalid Username and Password');
+  //   f.valid ? this.enabled = true : this.enabled = false;
+  // }
+
+  // formValidation() : boolean {
+  //   if(this.model.username !== null && this.model.password !== null) return this.enabled == true;
+
+  //   return this.enabled == false;
   // }
 
   login() {

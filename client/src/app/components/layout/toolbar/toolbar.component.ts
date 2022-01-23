@@ -1,30 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginUser } from 'src/app/_models/_admin/loginUser';
 import { AccountService } from 'src/app/_services/account.service';
 
 @Component({
-  selector: 'app-layout',
-  templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.css']
+  selector: 'app-toolbar',
+  templateUrl: './toolbar.component.html',
+  styleUrls: ['./toolbar.component.css']
 })
-export class LayoutComponent implements OnInit {
-  events: string[] = [];
-  opened: boolean = true;
-  showFiller = false;
+export class ToolbarComponent implements OnInit {
+  // @Input() showSideNav: boolean;
   currentUser: LoginUser;
   showStatistics: boolean = false;
-  showSideNav: boolean;
-  
-  constructor(private accountService: AccountService,private router: Router) {}
+  constructor(private accountService: AccountService, private router: Router) { }
 
   ngOnInit(): void {
-    this.showSideNav = false;
     this.currentUser = JSON.parse(localStorage.getItem('user'));
   }
-
   sideNavToggle() {
-    this.showSideNav = !this.showSideNav;
+    // this.showStatistics = !this.showStatistics;
   }
 
   logout() {
@@ -35,6 +29,4 @@ export class LayoutComponent implements OnInit {
   navigation(navigation: string) {
     this.router.navigateByUrl(`/${navigation}`);
   }
-
-  shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);
 }
