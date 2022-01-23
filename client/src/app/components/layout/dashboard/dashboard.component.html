@@ -1,6 +1,189 @@
-<h1>Dashboard</h1>
-<mat-form-field>
-    <mat-label>Input</mat-label>
-    <input matInput type="text" class="w-100" required="required" autocomplete="false">
-</mat-form-field>
-<button mat-button color="primary">Hello</button>
+<mat-grid-list class="dashboard-grid-list" cols="{{dashboardGridCols}}" gutterSize="20px" rowHeight="100px">
+    <!--First Tile-->
+    <mat-grid-tile colspan="1" fxLayout="row" class="dashboard-tile dashboard-tile-1 colorful-tile"
+        fxLayoutAlign="start stretch" matRipple>
+        <div fxFlex="11 25%" fxLayout="column" fxLayoutAlign="center center" class="h-100">
+            <mat-icon>group</mat-icon>
+        </div>
+        <div fxFlex="11 75%" fxLayout="column" fxLayoutAlign="center center" class="h-100 text-right">
+            <div class="dashboard-tile-heading">Active Merchants: </div>
+            <div class="dashboard-tile-sub-heading">{{8450 | number}}</div>
+        </div>
+    </mat-grid-tile>
+    <!--First Tile-->
+    <!--Second Tile-->
+    <mat-grid-tile colspan="1" fxLayout="row" class="dashboard-tile dashboard-tile-2 colorful-tile"
+        fxLayoutAlign="start stretch" matRipple>
+        <div fxFlex="11 25%" fxLayout="column" fxLayoutAlign="center center" class="h-100">
+            <mat-icon>currency_rupee</mat-icon>
+        </div>
+        <div fxFlex="11 75%" fxLayout="column" fxLayoutAlign="center center" class="h-100 text-right">
+            <div class="dashboard-tile-heading">Today: </div>
+            <div class="dashboard-tile-sub-heading">{{2342345 | currency:"INR":"symbol"}}</div>
+        </div>
+    </mat-grid-tile>
+    <!--Second Tile-->
+    <!--Third Tile-->
+    <mat-grid-tile colspan="1" fxLayout="row" class="dashboard-tile dashboard-tile-3 colorful-tile"
+        fxLayoutAlign="start stretch" matRipple>
+        <div fxFlex="11 25%" fxLayout="column" fxLayoutAlign="center center" class="h-100">
+            <mat-icon>currency_rupee</mat-icon>
+        </div>
+        <div fxFlex="11 75%" fxLayout="column" fxLayoutAlign="center center" class="h-100 text-right">
+            <div class="dashboard-tile-heading">Month: </div>
+            <div class="dashboard-tile-sub-heading">{{22342345 | currency:"INR":"symbol"}}</div>
+        </div>
+    </mat-grid-tile>
+    <!--Third Tile-->
+    <!--Fourth Tile-->
+    <mat-grid-tile colspan="1" fxLayout="row" class="dashboard-tile dashboard-tile-4 colorful-tile"
+        fxLayoutAlign="start stretch" matRipple>
+        <div fxFlex="11 25%" fxLayout="column" fxLayoutAlign="center center" class="h-100">
+            <mat-icon>currency_rupee</mat-icon>
+        </div>
+        <div fxFlex="11 75%" fxLayout="column" fxLayoutAlign="center center" class="h-100 text-right">
+            <div class="dashboard-tile-heading">Revenue: </div>
+            <div class="dashboard-tile-sub-heading">{{32456 | currency:"INR":"symbol"}}</div>
+        </div>
+    </mat-grid-tile>
+    <!--Fourth Tile-->
+    <!--Fifth Tile-->
+    <mat-grid-tile [colspan]="cardColspan" rowspan="4" class="dashboard-tile dashboard-tile-5 scroll">
+        <div fxFlex="1 1 100%" fxLayout="column">
+
+            <!-- first box starts -->
+            <!-- <div fxFlex="1 1 100%" fxLayout="row" fxLayoutAlign="cener stretch">
+                <div fxFlex="1 1 50%" class="p-10 font-weight-bold text-large text-center">Queries</div>
+                <div fxFlex="1 1 50%" class="text-center p-10">
+                    <mat-icon matRipple class="hand-icon">more_vert</mat-icon>
+                </div>
+            </div> -->
+            <!-- first box ends -->
+
+            <!-- second box starts -->
+            <div fxFlex="1 1 100%" class="scroll">
+                <mat-accordion *ngIf="queryData !== null">
+                    <mat-expansion-panel *ngFor="let query of queryData">
+                        <mat-expansion-panel-header matRipple>
+                            <div class="w-100" fxLayout="row" fxLayoutAlign="space-between start"
+                                fxLayout.lt-md="column">
+                                <mat-panel-title fxFlex="1 1 60%" fxFlex="1 1 100%" fxLayout="row"
+                                    fxLayoutAlign="start center" class="text-large">
+                                    <mat-icon>account_circle</mat-icon>
+                                    <div class="text-blue ml">{{query.name}}</div>
+                                </mat-panel-title>
+                                <mat-panel-description fxFlex="1 1 40%" fxFlex="1 1 100%">
+                                    <div class="text-right w-100">Check-In: {{query.date | date: "mediumDate"}}
+                                    </div>
+                                </mat-panel-description>
+                            </div>
+                        </mat-expansion-panel-header>
+                        <table class="w-100">
+                            <tr>
+                                <td class="w-25">Submitted On:</td>
+                                <td class="font-weight-bold p">{{query.date | date: "medium"}}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-25">Replied-On:</td>
+                                <td class="font-weight-bold p">{{query.date | date: "medium"}}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-25">Status:</td>
+                                <td class="font-weight-bold p">
+                                    <span
+                                        [ngClass]="{ 'red-text': query.pendingStatus, 'green-text': !query.pendingStatus}">
+                                        {{query.pendingStatus ? 'pending' : 'replied'}}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="w-25">Query:</td>
+                                <td class="font-weight-bold p">{{query.query}}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-25">Email:</td>
+                                <td class="font-weight-bold p">{{query.email}}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-25">Phone:</td>
+                                <td class="font-weight-bold p">{{query.mobile}}</td>
+                            </tr>
+                        </table>
+                        <mat-action-row fxLayoutAlign="space-between start">
+                            <button mat-button color="warn">
+                                <mat-icon>delete</mat-icon>&nbsp;Delete
+                            </button>
+
+                            <button mat-button color="primary" class="mr">
+                                <mat-icon>call</mat-icon>&nbsp;Call
+                            </button>
+                        </mat-action-row>
+                    </mat-expansion-panel>
+
+                    <!-- <mat-expansion-panel *ngFor="let booking of bookings">
+                        <mat-expansion-panel-header matRipple>
+                            <div class="w-100" fxLayout="row" fxLayoutAlign="space-between start"
+                                fxLayout.lt-md="column">
+                                <mat-panel-title fxFlex="1 1 60%" fxFlex="1 1 100%" fxLayout="row"
+                                    fxLayoutAlign="start center" class="text-large">
+                                    <mat-icon>account_circle</mat-icon>
+                                    <div class="text-blue ml">{{booking.guest1Name}}</div>
+                                </mat-panel-title>
+
+                                <mat-panel-description fxFlex="1 1 40%" fxFlex="1 1 100%">
+                                    <div class="text-right w-100">Check-In: {{booking.checkIn | date: "mediumDate"}}
+                                    </div>
+                                </mat-panel-description>
+                            </div>
+                        </mat-expansion-panel-header>
+                        <table class="w-100">
+                            <tr>
+                                <td class="w-25">Check-In:</td>
+                                <td class="font-weight-bold p">{{booking.checkIn | date: "medium"}}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-25">Check-Out:</td>
+                                <td class="font-weight-bold p">{{booking.checkOut | date: "medium"}}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-25">Status:</td>
+                                <td class="font-weight-bold p">
+                                    <span
+                                        [ngClass]="{ 'red-text': booking.status == 'Not Paid', 'green-text': booking.status == 'Paid'}">{{booking.status}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="w-25">Room Type:</td>
+                                <td class="font-weight-bold p">{{booking.roomType}}</td>
+                            </tr>
+                            <tr>
+                                <td class="w-25">Phone:</td>
+                                <td class="font-weight-bold p">{{booking.phone}}</td>
+                            </tr>
+                        </table>
+
+                        <mat-action-row fxLayoutAlign="space-between start">
+                            <button mat-button color="warn">
+                                <mat-icon>delete</mat-icon>&nbsp;Delete
+                            </button>
+
+                            <button mat-button color="primary" class="mr">
+                                <mat-icon>call</mat-icon>&nbsp;Call
+                            </button>
+                        </mat-action-row>
+                    </mat-expansion-panel> -->
+
+                </mat-accordion>
+            </div>
+            <!-- second box ends -->
+
+        </div>
+    </mat-grid-tile>
+    <!--Fifth Tile-->
+    <!--Sixth Tile-->
+    <mat-grid-tile colspan="{{cardColspan}}" rowspan="4" fxLayout="row"
+        class="dashboard-tile dashboard-tile-6 colorful-tile" fxLayoutAlign="start stretch" matRipple>
+        Six
+    </mat-grid-tile>
+    <!--Sixth Tile-->
+</mat-grid-list>
