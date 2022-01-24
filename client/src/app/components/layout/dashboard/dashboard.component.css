@@ -177,11 +177,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 
 .dashboard-tile-heading
 {
-  font-size: 1.2em;
+  font-size: 1em;
   font-family: Tahoma, sans-serif;
   margin-bottom: 8px;
   width: 100%;
-  padding-right: 20px;
+  padding-right: 15px;
 }
 
 .dashboard-tile-sub-heading
@@ -581,4 +581,19 @@ th.mat-header-cell:first-of-type,td.mat-cell:first-of-type,td.mat-footer-cell:fi
 @media screen and (min-width: 1001px)
 {
   /* styles for large devices */
+}
+
+
+
+.wrapper {
+  position: sticky;
+  align-items: flex-start;
+  /* padding-bottom: 50px; */
+  padding-top: 10px;
+}
+
+.wrapper .top {
+  position: sticky;
+  top: 10px;
+  height: 50px;
 }

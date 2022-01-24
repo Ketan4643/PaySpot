@@ -46,6 +46,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { ChartModule } from 'angular-highcharts';
 
 const MaterialComponents = [
     CommonModule,
@@ -94,7 +95,8 @@ const MaterialComponents = [
     OverlayModule,
     PortalModule,
     ScrollingModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ChartModule
 ]
 
 @NgModule({

@@ -1,39 +1,42 @@
 <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" class="nav">
   <!-- left box of toolbar starts -->
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <button mat-icon-button (click)="sideNavToggle()" matTooltip="Sidebar">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <button mat-icon-button matTooltip="Dashboard" (click)="navigation('dashboard')">
-      <mat-icon>home</mat-icon>
-    </button>
-    <span></span>
-  </div>
-  <!-- left box of toolbar ends -->
-  <!-- center box of toolbar starts -->
-  <div>
-    <button type="button" mat-stroked-button (click)="showStatistics = !showStatistics" fxHide.lt-md="true"
-      matTooltip="click to show/hide expension">
-      <mat-icon>analytics</mat-icon>
-      <span class="ml mr">Statistics</span>
-      <mat-icon class="rotatable" [ngClass]="{ 'rotate-180': showStatistics}">keyboard_arrow_down</mat-icon>
-    </button>
-  </div>
-  <!-- center box of toolbar ends -->
-
-  <!-- right box of toolbar starts -->
-  <div>
-    <button type="button" mat-stroked-button class="mr" [matMenuTriggerFor]="user" fxHide.lt-md="true"
-      matTooltip="User">
-      <mat-icon>account_circle</mat-icon> {{currentUser.username | titlecase}}
-    </button>
-    <button type="button" mat-icon-button [matMenuTriggerFor]="notification" class="ml mr" matTooltip="Notifications">
-      <mat-icon matBadge="2" matBadgeColor="accent">notifications</mat-icon>
-    </button>
-    <button type="button" mat-icon-button [matMenuTriggerFor]="topmenu" matTooltip="Menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-  </div>
+  <ng-container  *ngIf="currentUser !== null">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-icon-button (click)="sideNavToggle()" matTooltip="Sidebar">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Dashboard" (click)="navigation('dashboard')">
+        <mat-icon>home</mat-icon>
+      </button>
+      <span></span>
+    </div>
+    <!-- left box of toolbar ends -->
+    <!-- center box of toolbar starts -->
+    <div>
+      <button type="button" mat-stroked-button (click)="showStatistics = !showStatistics" fxHide.lt-md="true"
+        matTooltip="click to show/hide expension">
+        <mat-icon>analytics</mat-icon>
+        <span class="ml mr">Statistics</span>
+        <mat-icon class="rotatable" [ngClass]="{ 'rotate-180': showStatistics}">keyboard_arrow_down</mat-icon>
+      </button>
+    </div>
+    <!-- center box of toolbar ends -->
+  
+    <!-- right box of toolbar starts -->
+    <div>
+      <button type="button" mat-stroked-button class="mr" [matMenuTriggerFor]="user" fxHide.lt-md="true"
+        matTooltip="User">
+        <mat-icon>account_circle</mat-icon> {{currentUser.username | titlecase}}
+      </button>
+      <button type="button" mat-icon-button [matMenuTriggerFor]="notification" class="ml mr" matTooltip="Notifications">
+        <mat-icon matBadge="2" matBadgeColor="accent">notifications</mat-icon>
+      </button>
+      <button type="button" mat-icon-button [matMenuTriggerFor]="topmenu" matTooltip="Menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+  </ng-container>
+  
   <!-- right box of toolbar ends -->
 
   <mat-menu #user="matMenu">
