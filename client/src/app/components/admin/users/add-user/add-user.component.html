@@ -1,6 +1,6 @@
 <div class="page-title m-2" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.lt-md="start start" fxLayout.lt-md="column" fxLayoutGap.lt-md="13px">
     <div fxFlex="1 1 50%" fxFlex.lt-md="1 1 100%">Add New User</div>
-    <div fxFlex="1 1 50%" class="text-right" fxFlex.lt-md="1 1 100%"><a mat-stroked-button [routerLink]="[ '/bookings-list' ]">
+    <div fxFlex="1 1 50%" class="text-right" fxFlex.lt-md="1 1 100%"><a mat-stroked-button [routerLink]="[ '/users' ]">
         <mat-icon>arrow_back</mat-icon>&nbsp;Back to Users
       </a></div>
   </div>
@@ -12,7 +12,7 @@
           <h2 class="section-header" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between stretch">
             <div fxFlex="1 1 40%" fxFlex="1 1 100%">Basic Information</div>
             <div fxFlex="1 1 60%" fxFlex="1 1 100%" [ngClass.gt-xs]="{ 'text-right': true}">
-              <button mat-flat-button color="primary">
+              <button mat-flat-button color="primary" matStepperNext>
                 <span>Go to Address Info</span>
                 <mat-icon>chevron_right</mat-icon>
               </button>
@@ -79,7 +79,24 @@
               <!-- <mat-error *ngIf="getFormControl('basicInfo.userRoles').hasError('required')" [innerHTML]="getErrorMessage('userRoles', 'required')"></mat-error>
               <mat-hint align="end">Choose a role for User</mat-hint> -->
             </mat-form-field>
-          </div>        
+          </div>   
+
+          <div fxLayout="row" cols="4" fxLayoutGap.gt-sm="40px" fxLayout.lt-md="column" fxLayoutAlign="space-between center">
+            <mat-form-field colspan="1"  fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%"class="w-100" color="primary" appearance="fill">
+              <mat-label>Email</mat-label>
+              <input type="text" matInput formControlName="email">
+              <mat-error *ngIf="getFormControl('basicInfo.email').hasError('required')" [innerHTML]="getErrorMessage('email', 'required')"></mat-error>
+              <mat-error *ngIf="getFormControl('basicInfo.email').hasError('email')" [innerHTML]="getErrorMessage('email', 'email')"></mat-error>
+              <!-- <mat-hint align="end">Enter Guardian Name</mat-hint> -->
+            </mat-form-field>
+
+            <mat-form-field colspan="1" fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%" class="w-100" color="primary" appearance="fill">
+              <mat-label>Phone Number</mat-label>
+              <input type="text" matInput formControlName="phoneNumber">
+              <mat-error *ngIf="getFormControl('basicInfo.phoneNumber').hasError('required')" [innerHTML]="getErrorMessage('phoneNumber', 'required')"></mat-error>
+              <!-- <mat-hint align="end">Enter Nomiee Name</mat-hint> -->
+            </mat-form-field>
+          </div>    
         </div>
       </form>
     </mat-step>
@@ -89,7 +106,7 @@
           <h2 class="section-header" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between stretch">
             <div fxFlex="1 1 40%" fxFlex="1 1 100%">Address Information</div>
             <div fxFlex="1 1 60%" fxFlex="1 1 100%" [ngClass.gt-xs]="{ 'text-right': true}">
-              <button mat-flat-button color="primary">
+              <button mat-flat-button color="primary" matStepperNext>
                 <span>Go to KYC Info</span>
                 <mat-icon>chevron_right</mat-icon>
               </button>

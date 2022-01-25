@@ -25,6 +25,8 @@ export class AddUserComponent implements OnInit {
         userRoles: new FormControl(0, [Validators.required]),
         gender: new FormControl(0, [Validators.required]),
         name: new FormControl(null, [Validators.required]),
+        email: new FormControl(null, [Validators.required, Validators.email]),
+        phoneNumber: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),  
         dateOfBirth: new FormControl(null,[Validators.required]),
         guardianName: new FormControl(null, [Validators.required]),
         nominee: new FormControl(null, [Validators.required]),
