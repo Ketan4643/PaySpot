@@ -3,7 +3,7 @@
         <!-- <div class="col-md-3 text-center">
             <img src="../../../assets/payspot/MainLogoBig.jpeg" width="80%" height="auto;">
         </div> -->
-        <div class="col-md-9 contact">
+        <div class="col-md-6 contact">
             <mat-card>
                 <mat-card-title>Contact Us</mat-card-title>
                 <mat-card-subtitle>Let us know about you...</mat-card-subtitle>
@@ -58,7 +58,8 @@
                             <mat-label>State</mat-label>
                             <mat-select formControlName="state">
                                 <!-- <mat-optgroup label="A"> -->
-                                <mat-option *ngFor="let state of states" value="state.stateName">{{state.stateName}}
+                                <mat-option *ngFor="let state of states" [value]="state.stateName">
+                                    {{state.stateName}}
                                 </mat-option>
                                 <!-- </mat-optgroup> -->
                             </mat-select>
@@ -73,14 +74,14 @@
                         </mat-form-field>
                         <div class="row">
                             <div class="col-md-6">
-                                <button type="button" class="btn btn-primary btn-lg btn-block mt-3" routerLink="/login">
-                                    Sign-In
+                                <button mat-raised-button color="primary" class="btn-block mt-3" routerLink="/login">
+                                    Go to Sign-In <mat-icon>login</mat-icon>
                                 </button>
                             </div>
                             <div class="col-md-6">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block mt-3"
+                                <button mat-raised-button color="primary" class="btn-block mt-3"
                                     [disabled]="!registerForm.valid">
-                                    Submit Query
+                                    Submit Query <mat-icon>send</mat-icon>
                                 </button>
                             </div>
                         </div>
@@ -93,3 +94,5 @@
         </div>
     </div>
 </div>
+
+<!-- <div class="mt-4">{{registerForm.value | json}}</div> -->

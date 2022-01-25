@@ -12,23 +12,30 @@ import { AdminService } from 'src/app/_services/admin.service';
 })
 export class LeadsComponent implements AfterViewInit {
   displayedColumns: string[] = ['id','name','email','mobile','state','query','createdOn','pendingStatus'];
-  dataSource = new MatTableDataSource([]);
+  // dataSource = new MatTableDataSource([]);
   queries: Querydto[] = [];
   totalCount = 0;
-  constructor(private adminService: AdminService, private toastr: ToastrService) { 
-    
+  isLoading: boolean;
+  constructor(private adminService: AdminService, private toastr: ToastrService) {   
   }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngAfterViewInit(): void {
-      this.dataSource.paginator = this.paginator;
+    this.isLoading = false;
+    this.getQueries();
+    // this.dataSource.paginator = this.paginator;
   }
 
   getQueries() {
+    this.isLoading = true;
     this.adminService.getQueries().subscribe(queries => {
-      this.dataSource = new MatTableDataSource(queries);
-      this.totalCount = queries.length;
+      setTimeout(() => {
+        this.totalCount = queries.length;
+        this.queries = queries;
+        this.isLoading = false;
+      }, 1000);
+      // this.dataSource = new MatTableDataSource(queries); 
     }); 
   }
 

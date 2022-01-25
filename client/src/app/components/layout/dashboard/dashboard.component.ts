@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
-import { delay } from 'rxjs/operators';
 import { Querydto } from 'src/app/_models/querydto';
 import { Booking } from 'src/app/_models/_admin/booking';
 import { AdminService } from 'src/app/_services/admin.service';
 import { Chart } from 'angular-highcharts';
-import { chart } from 'highcharts';
 import { columnChartOption } from 'src/app/_charts/column-chart';
+import { donutChartOption } from 'src/app/_charts/donut-chart';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +19,7 @@ export class DashboardComponent implements OnInit {
   queryData: Querydto[] = [];
   isLoading: boolean = false;
   columnChart: Chart = new Chart(columnChartOption);
+  donutChart: Chart = new Chart(donutChartOption);
   
   constructor(private mediaObserver: MediaObserver, private adminService:AdminService) { }
 
@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
       setTimeout(() => {
         this.isLoading = true;
         this.queryData = queries;
-        this.queryData = this.queryData.filter(x=> x.id < 7);
+        this.queryData = this.queryData.filter(x=> x.id < 9);
       }, 1000);
       
       this.isLoading = false;

@@ -1,0 +1,157 @@
+<div class="page-title m-2" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.lt-md="start start" fxLayout.lt-md="column" fxLayoutGap.lt-md="13px">
+    <div fxFlex="1 1 50%" fxFlex.lt-md="1 1 100%">Add New User</div>
+    <div fxFlex="1 1 50%" class="text-right" fxFlex.lt-md="1 1 100%"><a mat-stroked-button [routerLink]="[ '/bookings-list' ]">
+        <mat-icon>arrow_back</mat-icon>&nbsp;Back to Users
+      </a></div>
+  </div>
+  <mat-divider></mat-divider>
+  <mat-horizontal-stepper class="mt-4">
+    <mat-step label="Basic Information">
+      <form [formGroup]="formGroup">
+        <div class="form-container mb mt" formGroupName="basicInfo">
+          <h2 class="section-header" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between stretch">
+            <div fxFlex="1 1 40%" fxFlex="1 1 100%">Basic Information</div>
+            <div fxFlex="1 1 60%" fxFlex="1 1 100%" [ngClass.gt-xs]="{ 'text-right': true}">
+              <button mat-flat-button color="primary">
+                <span>Go to Address Info</span>
+                <mat-icon>chevron_right</mat-icon>
+              </button>
+            </div>
+          </h2>
+          <div fxLayout="row" cols="4" fxLayoutGap.gt-sm="40px" fxLayout.lt-md="column" fxLayoutAlign="space-between center">
+            <!-- <div fxFlex="1 1 calc(25% - 20px)" fxFlex.lt-md="1 1 100%"> -->
+              <mat-form-field fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%" class="w-100" color="primary" appearance="fill">
+                <mat-label>Select User Role</mat-label>
+                <mat-select formControlName="userRoles">
+                  <mat-option *ngIf="userRoles == null">Loading...</mat-option>
+                  <mat-option *ngFor="let role of userRoles" [value]="role">{{role}}</mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="getFormControl('basicInfo.userRoles').hasError('required')" [innerHTML]="getErrorMessage('userRoles', 'required')"></mat-error>
+                <mat-hint align="end">Choose a role for User</mat-hint> -->
+              </mat-form-field>
+              
+              <mat-form-field colspan="1" fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%"class="w-100" color="primary" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput formControlName="name">
+                <mat-error *ngIf="getFormControl('basicInfo.name').hasError('required')" [innerHTML]="getErrorMessage('name', 'required')"></mat-error>
+                <!-- <mat-hint align="end">Enter valid name</mat-hint> -->
+              </mat-form-field>
+
+              <mat-form-field fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%" class="w-100" color="primary" appearance="fill">
+                <mat-label>Select Gender</mat-label>
+                <mat-select formControlName="gender">
+                  <mat-option *ngIf="gender == null">Loading...</mat-option>
+                  <mat-option *ngFor="let item of gender" [value]="item">{{item}}</mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="getFormControl('basicInfo.userRoles').hasError('required')" [innerHTML]="getErrorMessage('userRoles', 'required')"></mat-error>
+                <mat-hint align="end">Choose a role for User</mat-hint> -->
+              </mat-form-field>
+
+              <mat-form-field colspan="1" fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%"class="w-100" color="primary" appearance="fill">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>  
+            <!-- </div> -->
+          </div>
+
+          <div fxLayout="row" cols="4" fxLayoutGap.gt-sm="40px" fxLayout.lt-md="column" fxLayoutAlign="space-between center">
+            <mat-form-field colspan="1"  fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%"class="w-100" color="primary" appearance="fill">
+              <mat-label>Guardian Name</mat-label>
+              <input type="text" matInput formControlName="guardianName">
+              <mat-error *ngIf="getFormControl('basicInfo.guardianName').hasError('required')" [innerHTML]="getErrorMessage('guardianName', 'required')"></mat-error>
+              <!-- <mat-hint align="end">Enter Guardian Name</mat-hint> -->
+            </mat-form-field>
+
+            <mat-form-field colspan="1" fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%" class="w-100" color="primary" appearance="fill">
+              <mat-label>Nomiee</mat-label>
+              <input type="text" matInput formControlName="nominee">
+              <mat-error *ngIf="getFormControl('basicInfo.nominee').hasError('required')" [innerHTML]="getErrorMessage('nomiee', 'required')"></mat-error>
+              <!-- <mat-hint align="end">Enter Nomiee Name</mat-hint> -->
+            </mat-form-field>
+            <mat-form-field fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%" class="w-100" color="primary" appearance="fill">
+              <mat-label>Select Relationship with User</mat-label>
+              <mat-select formControlName="relationShip">
+                <mat-option *ngIf="relationShip == null">Loading...</mat-option>
+                <mat-option *ngFor="let relation of relationShip" [value]="relation">{{relation}}</mat-option>
+              </mat-select>
+              <!-- <mat-error *ngIf="getFormControl('basicInfo.userRoles').hasError('required')" [innerHTML]="getErrorMessage('userRoles', 'required')"></mat-error>
+              <mat-hint align="end">Choose a role for User</mat-hint> -->
+            </mat-form-field>
+          </div>        
+        </div>
+      </form>
+    </mat-step>
+    <mat-step label="Address Info">
+      <form [formGroup]="formGroup">
+        <div class="form-container mb mt" formGroupName="addressInfo">
+          <h2 class="section-header" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between stretch">
+            <div fxFlex="1 1 40%" fxFlex="1 1 100%">Address Information</div>
+            <div fxFlex="1 1 60%" fxFlex="1 1 100%" [ngClass.gt-xs]="{ 'text-right': true}">
+              <button mat-flat-button color="primary">
+                <span>Go to KYC Info</span>
+                <mat-icon>chevron_right</mat-icon>
+              </button>
+            </div>
+          </h2>
+          <div fxLayout="row" cols="4" fxLayoutGap.gt-sm="40px" fxLayout.lt-md="column" fxLayoutAlign="space-between center">
+            <!-- <div fxFlex="1 1 calc(25% - 20px)" fxFlex.lt-md="1 1 100%"> -->
+              <mat-form-field fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%" class="w-100" color="primary" appearance="fill">
+                <mat-label>Select Address Type</mat-label>
+                <mat-select formControlName="addressType">
+                  <mat-option *ngIf="userRoles == null">Loading...</mat-option>
+                  <mat-option *ngFor="let type of addressType" [value]="type">{{type}}</mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="getFormControl('basicInfo.userRoles').hasError('required')" [innerHTML]="getErrorMessage('userRoles', 'required')"></mat-error>
+                <mat-hint align="end">Choose a role for User</mat-hint> -->
+              </mat-form-field>
+
+              <mat-form-field fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%" class="w-100" color="primary" appearance="fill">
+                <mat-label>Select Address Status</mat-label>
+                <mat-select formControlName="addressStatus">
+                  <mat-option *ngIf="addressStatus == null">Loading...</mat-option>
+                  <mat-option *ngFor="let status of addressStatus" [value]="status">{{status}}</mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="getFormControl('basicInfo.userRoles').hasError('required')" [innerHTML]="getErrorMessage('userRoles', 'required')"></mat-error>
+                <mat-hint align="end">Choose a role for User</mat-hint> -->
+              </mat-form-field>
+              
+              <mat-form-field colspan="1" fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%"class="w-100" color="primary" appearance="fill">
+                <mat-label>City</mat-label>
+                <input type="text" matInput formControlName="city">
+                <mat-error *ngIf="getFormControl('addressInfo.city').hasError('required')" [innerHTML]="getErrorMessage('city', 'required')"></mat-error>
+                <!-- <mat-hint align="end">Enter valid name</mat-hint> -->
+              </mat-form-field>
+              
+              <mat-form-field colspan="1" fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%"class="w-100" color="primary" appearance="fill">
+                <mat-label>Pincode</mat-label>
+                <input type="text" matInput formControlName="pincode">
+                <mat-error *ngIf="getFormControl('addressInfo.pincode').hasError('required')" [innerHTML]="getErrorMessage('pincode', 'required')"></mat-error>
+                <!-- <mat-hint align="end">Enter valid name</mat-hint> -->
+              </mat-form-field>
+
+              <mat-form-field fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%" class="w-100" color="primary" appearance="fill">
+                <mat-label>Select State</mat-label>
+                <mat-select formControlName="stateCode">
+                  <mat-option *ngIf="states == null">Loading...</mat-option>
+                  <mat-option *ngFor="let state of states" [value]="state.stateCode">{{state.stateName}}</mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="getFormControl('basicInfo.userRoles').hasError('required')" [innerHTML]="getErrorMessage('userRoles', 'required')"></mat-error>
+                <mat-hint align="end">Choose a role for User</mat-hint> -->
+              </mat-form-field>
+            <!-- </div> -->
+          </div>    
+        </div>
+      </form>
+
+    </mat-step>
+    <mat-step label="KYC Info">three</mat-step>
+    <mat-step label="Finish">Four</mat-step>
+  </mat-horizontal-stepper>
+
+
+  <div class="mt-10">
+    {{formGroup.value | json}}
+  </div>
+  

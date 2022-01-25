@@ -14,6 +14,10 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UsersComponent } from './admin/users/users.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ToolbarComponent } from './layout/toolbar/toolbar.component';
+import { ContactComponent } from './contact/contact.component';
+import { InputValidationComponent } from './_form/input-validation/input-validation.component';
+import { DateInputComponent } from './_form/date-input/date-input.component';
+import { AddUserComponent } from './admin/users/add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import { ToolbarComponent } from './layout/toolbar/toolbar.component';
     LeadsComponent,
     UserProfileComponent,
     UsersComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ContactComponent,
+    InputValidationComponent,
+    DateInputComponent,
+    AddUserComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +56,11 @@ import { ToolbarComponent } from './layout/toolbar/toolbar.component';
     LeadsComponent,
     UserProfileComponent,
     FlexLayoutModule,
-    ToolbarComponent
+    ToolbarComponent,
+    ContactComponent,
+    InputValidationComponent,
+    DateInputComponent,
+    AddUserComponent
   ]
 })
 export class ComponentsModule { }

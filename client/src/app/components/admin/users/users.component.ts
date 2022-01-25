@@ -28,10 +28,9 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class UsersComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
-
+  
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

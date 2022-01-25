@@ -72,6 +72,7 @@ export class ContactComponent implements OnInit {
   }
 
   register() {
+    console.log(this.registerForm.value)
     this.adminService.register(this.registerForm.value).subscribe(() => {
       this.toastr.success("Query Registered Successfully");
       Swal.fire({

@@ -10,7 +10,10 @@
 } */
 
 .bg-image {
-  background-image: url('../../../assets/others/bbps.jpeg');
+  /* background-image: url('../../../assets/others/bbps.jpeg'); */
+  background-image: url('../../../assets/others/Business_Login_5.png');
+  width: 100%;
+  height: 800px;
   background-size: cover;
   background-position: center center;
 }
@@ -23,7 +26,7 @@
   /* background-color: transparent;  */
   opacity: .8;
   /* border: 2px solid green; */
-  background-image: url('https://bf-sale.mdbgo.io/bf.png');
+  /* background-image: url('https://bf-sale.mdbgo.io/bf.png'); */
 }
 
 .main-image {

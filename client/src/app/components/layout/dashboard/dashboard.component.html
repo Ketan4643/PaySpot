@@ -48,75 +48,9 @@
     </mat-grid-tile>
     <!--Fourth Tile-->
     <!--Fifth Tile-->
-    <mat-grid-tile [colspan]="cardColspan" rowspan="4" class="dashboard-tile dashboard-tile-5 colorful-tile scroll">
-        <div fxFlex="11100%" fxLayout="column">
-            <!-- first box starts -->
-            <div fxFlex="11100%" fxLayout="row" fxLayoutAlign="start stretch">
-                <div fxFlex="1150%" class="p-10 font-weight-bold text-large text-dark">Queries</div>
-                <div fxFlex="1150%" class="text-right p-10">
-                    <mat-icon matRipple class="hand-icon text-dark">more_vert</mat-icon>
-                </div>
-            </div>
-            <mat-divider></mat-divider>
-            <!-- first box ends -->
-            <mat-progress-bar [value]="60" mode="indeterminate" *ngIf="!isLoading"></mat-progress-bar>
-            <!-- second box starts -->
-            <div fxFlex="11100%">
-                <mat-accordion>
-                    <mat-expansion-panel *ngFor="let query of queryData">
-                        <mat-expansion-panel-header matRipple>
-                            <div class="w-100" fxLayout="row" fxLayoutAlign="space-between start"
-                                fxLayout.lt-md="column">
-                                <mat-panel-title fxFlex="1160%" fxFlex="11100%" fxLayout="row"
-                                    fxLayoutAlign="start center" class="text-large">
-                                    <mat-icon>account_circle</mat-icon>
-                                    <div class="text-blue ml">{{query.name}}</div>
-                                </mat-panel-title>
-
-                                <mat-panel-description fxFlex="1140%" fxFlex="11100%">
-                                    <div class="text-right w-100">Submitted-On: {{query.createdOn | date: "mediumDate"}}
-                                    </div>
-                                </mat-panel-description>
-                            </div>
-                        </mat-expansion-panel-header>
-                        <table class="w-100">
-                            <tr>
-                                <td class="w-25">Submitte-On:</td>
-                                <td class="font-weight-bold p">{{query.createdOn | date: "medium"}}</td>
-                            </tr>
-                            <tr>
-                                <td class="w-25">Status:</td>
-                                <td class="font-weight-bold p">
-                                    <span
-                                        [ngClass]="{ 'red-text': query.pendingStatus, 'green-text': !query.pendingStatus}">{{!query.pendingStatus
-                                        ? 'Replied' : 'Not-Replied'}}</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="w-25">Email:</td>
-                                <td class="font-weight-bold p">{{query.email}}</td>
-                            </tr>
-                            <tr>
-                                <td class="w-25">Phone:</td>
-                                <td class="font-weight-bold p">{{query.mobile}}</td>
-                            </tr>
-                        </table>
-                        <mat-action-row fxLayoutAlign="space-between start">
-                            <button mat-button color="warn">
-                                <mat-icon>delete</mat-icon>&nbsp;Delete
-                            </button>
-
-                            <button mat-button color="primary" class="mr">
-                                <mat-icon>call</mat-icon>&nbsp;Call
-                            </button>
-                        </mat-action-row>
-                    </mat-expansion-panel>
-
-                </mat-accordion>
-            </div>
-            <!-- second box ends -->
-
-        </div>
+    <mat-grid-tile colspan="{{cardColspan}}" rowspan="4" fxLayout="row"
+        class="dashboard-tile dashboard-tile-6 colorful-tile" fxLayoutAlign="start stretch" matRipple>
+        <div class="scroll" [chart]="donutChart"></div>
     </mat-grid-tile>
     <!--Fifth Tile-->
     <!--Sixth Tile-->

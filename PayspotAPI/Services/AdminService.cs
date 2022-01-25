@@ -18,7 +18,8 @@ public class AdminService : IAdminService
     {
         // var queries = await _unitOfWork.Leads.GetAll();
 
-        var queries = await _unitOfWork.Leads.GetPagedList(requestParams);
+        // var queries = await _unitOfWork.Leads.GetPagedList(requestParams);
+        var queries = await _unitOfWork.Leads.GetAll();
         var result = _mapper.Map<IList<QueryDto>>(queries);
         return result;
     }

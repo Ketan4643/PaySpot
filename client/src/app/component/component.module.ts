@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
-import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { ToastrModule } from 'ngx-toastr';
 import { DefaultComponent } from './default/default.component';
@@ -14,8 +13,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../components/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { InputValidationComponent } from './_form/input-validation/input-validation.component';
-import { DateInputComponent } from './_form/date-input/date-input.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
@@ -26,13 +23,10 @@ import { HeaderComponent } from '../components/layout/header/header.component';
   declarations: [
     HomeComponent,
     NavComponent,
-    ContactComponent,
     AboutComponent,
     DefaultComponent,
     ToolbarComponent,
     FooterComponent,
-    InputValidationComponent,
-    DateInputComponent,
     ConfirmDialogComponent,
     NotFoundComponent,
     ServerErrorComponent,
@@ -57,19 +51,14 @@ import { HeaderComponent } from '../components/layout/header/header.component';
   exports: [
     HomeComponent,
     NavComponent,
-    ContactComponent,
     AboutComponent,
     DefaultComponent,
     ToolbarComponent,
     FooterComponent,
     HttpClientModule,
-    DateInputComponent,
-    InputValidationComponent,
     ReactiveFormsModule,
     BrowserModule,
     FormsModule,
-    InputValidationComponent,
-    DateInputComponent,
     ConfirmDialogComponent,
     NotFoundComponent,
     ServerErrorComponent,
