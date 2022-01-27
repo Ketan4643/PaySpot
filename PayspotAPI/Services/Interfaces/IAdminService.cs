@@ -6,4 +6,5 @@ public interface IAdminService
     Task<ICollection<QueryDto>> GetQueries(RequestParams requestParams);
     Task<CommonResponseDto> UpdateAddressAsync(AddressDto dto);
     Task<CommonResponseDto> UpdateKycDocumentsAsync(KycDocumentDto dto);
+    Task<CommonResponseDto> UpdateLeadStatus(Lead model);
 }

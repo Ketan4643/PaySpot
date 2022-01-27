@@ -26,6 +26,11 @@
                 </div>
             </mat-expansion-panel-header>
             <table class="w-100 p-5">
+                <tr class="hidden">
+                    <td class="w-25">Id</td>
+                    <td class="w-25">:</td>
+                    <td class="font-weight-bold p">{{query.id}}</td>
+                </tr>
                 <tr>
                     <td class="w-25">Submitte-On</td>
                     <td class="w-25">:</td>
@@ -52,7 +57,7 @@
                 </tr>
             </table>
             <mat-action-row fxLayoutAlign="space-between start">
-                <button mat-button color="warn">
+                <button mat-button color="warn" (click)="deleteQuery(query)">
                     <mat-icon>delete</mat-icon>&nbsp;Delete
                 </button>
 

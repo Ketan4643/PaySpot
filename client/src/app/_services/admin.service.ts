@@ -16,7 +16,7 @@ export class AdminService {
     this._baseUrl = environment.baseUrl;
   }
   getQueries() {
-    return this.http.get<Querydto[]>(this._baseUrl + 'admin/get-queries');
+    return this.http.get<Querydto[]>(this._baseUrl + 'admin/get-queries?pageNumber=1&pageSize=100');
   }
 
   getStates() {
@@ -25,5 +25,9 @@ export class AdminService {
 
   register(model: QueryModel) {
     return this.http.post(this._baseUrl + 'admin/register', model);
+  }
+
+  delteQuery(model: Querydto) {
+    return this.http.post(this._baseUrl + 'admin/update-query', model);
   }
 }

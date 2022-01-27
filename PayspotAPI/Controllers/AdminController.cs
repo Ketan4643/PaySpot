@@ -98,4 +98,14 @@ public class AdminController : BaseController
 
         return Ok(await _userManager.UpdateAsync(user));
     }
+
+    [Authorize]
+    [HttpPost("update-query")]
+    public async Task<IActionResult> UpdateLeadStatus([FromBody] Lead model)
+    {
+        if(!ModelState.IsValid) return BadRequest("Invalid Request");
+
+        var result = await _adminService.UpdateLeadStatus(model);
+        return Ok(result);
+    }
 }

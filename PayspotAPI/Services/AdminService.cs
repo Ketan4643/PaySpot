@@ -19,7 +19,7 @@ public class AdminService : IAdminService
         // var queries = await _unitOfWork.Leads.GetAll();
 
         // var queries = await _unitOfWork.Leads.GetPagedList(requestParams);
-        var queries = await _unitOfWork.Leads.GetAll();
+        var queries = await _unitOfWork.Leads.GetAll(q=> q.PendingStatus == true);
         var result = _mapper.Map<IList<QueryDto>>(queries);
         return result;
     }
@@ -99,5 +99,18 @@ public class AdminService : IAdminService
     public Task<CommonResponseDto> UpdateKycDocumentsAsync(KycDocumentDto dto)
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<CommonResponseDto> UpdateLeadStatus(Lead model)
+    {
+        // var lead = await _unitOfWork.Leads.Get(query =>  query.Id == model.Id);
+        var lead = await _context.Leads.Where(x => x.Id == model.Id).FirstOrDefaultAsync();
+        if(lead == null) return new CommonResponseDto(StatusCodes.Status404NotFound, "Not found", "Record not found");
+
+        lead.PendingStatus = false;
+        // await _unitOfWork.Save();
+        await _context.SaveChangesAsync();
+
+        return new CommonResponseDto(StatusCodes.Status200OK, "Entry Updated", "Record Updated");
     }
 }

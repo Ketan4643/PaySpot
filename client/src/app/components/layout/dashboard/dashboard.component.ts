@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
-import { Querydto } from 'src/app/_models/querydto';
 import { Booking } from 'src/app/_models/_admin/booking';
 import { AdminService } from 'src/app/_services/admin.service';
 import { Chart } from 'angular-highcharts';
@@ -16,7 +15,7 @@ export class DashboardComponent implements OnInit {
   dashboardGridCols: number = 4;
   cardColspan: number = 2;
   bookings: Booking[] = [];
-  queryData: Querydto[] = [];
+  // queryData: Querydto[] = [];
   isLoading: boolean = false;
   columnChart: Chart = new Chart(columnChartOption);
   donutChart: Chart = new Chart(donutChartOption);
@@ -24,7 +23,7 @@ export class DashboardComponent implements OnInit {
   constructor(private mediaObserver: MediaObserver, private adminService:AdminService) { }
 
   ngOnInit(): void {
-    this.getQueries();
+    // this.getQueries();
     this.mediaObserver.asObservable().subscribe((media: MediaChange[])=> {
       if(media.some(mediaChange => mediaChange.mqAlias == 'lt-sm')) {
         this.dashboardGridCols = 1;
@@ -40,15 +39,15 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  getQueries() {
-    this.adminService.getQueries().subscribe(queries => {
-      setTimeout(() => {
-        this.isLoading = true;
-        this.queryData = queries;
-        this.queryData = this.queryData.filter(x=> x.id < 9);
-      }, 1000);
+  // getQueries() {
+  //   this.adminService.getQueries().subscribe(queries => {
+  //     setTimeout(() => {
+  //       this.isLoading = true;
+  //       this.queryData = queries;
+  //       this.queryData = this.queryData.filter(x=> x.id < 9);
+  //     }, 1000);
       
-      this.isLoading = false;
-    });
-  }
+  //     this.isLoading = false;
+  //   });
+  // }
 }
