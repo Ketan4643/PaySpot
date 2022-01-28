@@ -108,4 +108,23 @@ public class AdminController : BaseController
         var result = await _adminService.UpdateLeadStatus(model);
         return Ok(result);
     }
+
+    [Authorize]
+    [HttpPost("topup-wallet")]
+    public async Task<IActionResult> TopupWallet([FromBody] TopupModel model)
+    {
+        if(!ModelState.IsValid) return BadRequest("Invalid Request");
+
+        model.UpdatedBy = User.GetUsername();
+        
+        var result = await _adminService.TopupWallet(model);
+        return Ok(result);
+    }
+    [Authorize]
+    [HttpGet("get-available-balance")]
+    public async Task<IActionResult> GetAvailableBalance([FromQuery]string agentId)
+    {
+        var balance = await _adminService.GetAvailableBalance(agentId);
+        return Ok(balance);
+    }
 }

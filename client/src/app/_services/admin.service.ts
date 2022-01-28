@@ -30,4 +30,8 @@ export class AdminService {
   delteQuery(model: Querydto) {
     return this.http.post(this._baseUrl + 'admin/update-query', model);
   }
+
+  getAvailableBalance(agentId: string) {
+    return this.http.get(this._baseUrl + 'admin/get-available-balance?agentId=' + agentId);
+  }
 }

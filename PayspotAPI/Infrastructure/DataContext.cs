@@ -16,8 +16,7 @@ public class DataContext : IdentityDbContext<AppUser, AppRole, int,
 
     public DbSet<Lead> Leads { get; set; }
     public DbSet<StateMaster> StateMasters { get; set; }
-    
-    
+    public DbSet<TransactionDb> TransactionDb { get; set; }
     
     protected override void OnModelCreating(ModelBuilder builder)
     {

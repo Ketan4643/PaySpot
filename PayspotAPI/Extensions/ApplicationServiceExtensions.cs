@@ -18,6 +18,8 @@ public static class ApplicationServiceExtensions
         service.AddScoped<IUnitOfWork, UnitIOfWork>();
         service.AddScoped<IAuthManager, AuthManager>();
         service.AddScoped<IApiServices, ApiServices>();
+        service.AddScoped<ICommonService, CommonService>();
+
         service.AddScoped<IPayzoneServices, PayzoneServices>();
         service.AddDbContext<DataContext>(options =>
         {

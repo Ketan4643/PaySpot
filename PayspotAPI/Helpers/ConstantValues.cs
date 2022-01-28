@@ -52,3 +52,40 @@ public enum ApiMode
     L,  // Live
     D   // Development
 }
+
+public enum TransactionMode
+{
+    Debit,
+    Credit
+}
+
+public enum TransactionStatus
+{
+    Success,
+    Failure,
+    Initiated,
+    RefundPending,
+    Refunded    
+}
+
+public enum TopupMode
+{
+    Cash,
+    BankDeposit,
+    Online,
+    UPI,
+    Wallet
+}
+
+public enum Utility 
+{
+    Topup,
+    Electricity,
+    Water
+}
+
+public enum UtilityPartner
+{
+    Payspot,
+    ICICI_Bank
+}

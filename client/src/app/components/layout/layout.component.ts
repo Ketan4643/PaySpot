@@ -4,6 +4,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { LoginUser } from 'src/app/_models/_admin/loginUser';
 import { AccountService } from 'src/app/_services/account.service';
+import { AdminService } from 'src/app/_services/admin.service';
 
 @Component({
   selector: 'app-layout',
@@ -21,6 +22,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   showSubmenu: boolean = false;
   isShowing = false;
   showSubSubMenu: boolean = false;
+  isLoading: boolean = false;
 
   showFiller = false;
   currentUser: LoginUser;
@@ -31,9 +33,12 @@ export class LayoutComponent implements OnInit, OnDestroy {
   fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
   private _mobileQueryListener: () => void;
+
+  availableBalance: number = 0;
   
   constructor(private accountService: AccountService,private router: Router,
-    changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
+    private adminService: AdminService) {
       this.mobileQuery = media.matchMedia('(max-width: 600px)');
       this._mobileQueryListener = () => changeDetectorRef.detectChanges();
       this.mobileQuery.addListener(this._mobileQueryListener);
@@ -45,6 +50,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.showSideNav = false;
     this.currentUser = JSON.parse(localStorage.getItem('user'));
+    this.getAvailableBalance();
   }
 
   sideNavToggle() {
@@ -70,6 +76,17 @@ export class LayoutComponent implements OnInit, OnDestroy {
     if (!this.isExpanded) {
       this.isShowing = false;
     }
+  }
+
+  getAvailableBalance() {
+    this.isLoading = true;
+    this.adminService.getAvailableBalance(this.currentUser.username).subscribe(balance => {
+      setTimeout(() => {
+        if(balance) this.availableBalance = Number(balance);
+        console.log(balance);  
+        this.isLoading=false;
+      }, 1000);
+    });
   }
 
   shouldRun = /(^|.)(stackblitz|webcontainer).(io|com)$/.test(window.location.host);

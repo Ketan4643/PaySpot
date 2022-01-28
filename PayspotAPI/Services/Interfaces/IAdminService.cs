@@ -7,4 +7,6 @@ public interface IAdminService
     Task<CommonResponseDto> UpdateAddressAsync(AddressDto dto);
     Task<CommonResponseDto> UpdateKycDocumentsAsync(KycDocumentDto dto);
     Task<CommonResponseDto> UpdateLeadStatus(Lead model);
+    Task<CommonResponseDto> TopupWallet(TopupModel model);
+    Task<decimal> GetAvailableBalance(string agentId);
 }

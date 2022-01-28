@@ -24,6 +24,11 @@
     <!-- center box of toolbar ends -->
     <!-- right box of toolbar starts -->
     <div>
+      <button type="button" mat-stroked-button class="mr" (click)="getAvailableBalance()" [disabled]="isLoading">
+        <mat-icon>credit_card</mat-icon>&nbsp;{{availableBalance | currency:"INR"}}
+        <mat-progress-bar [value]="60" mode="indeterminate" *ngIf="isLoading" color="accent"></mat-progress-bar>
+        <!-- <mat-progress-spinner mode="indeterminate" role="progressbar" *ngIf="!isLoading"></mat-progress-spinner> -->
+      </button>
       <button type="button" mat-stroked-button class="mr" [matMenuTriggerFor]="user" fxHide.lt-md="true"
         matTooltip="User">
         <mat-icon>account_circle</mat-icon> {{currentUser.username | titlecase}}
@@ -49,6 +54,7 @@
       <button mat-menu-item [matMenuTriggerFor]="user">{{currentUser.username | titlecase}}</button>
       <button mat-menu-item (click)="showStatistics = !showStatistics">Statistics</button>
     </mat-menu>
+    
     <mat-menu #notification="matMenu">
       <button mat-menu-item>Transaction Id: 5372843 is successfull</button>
       <mat-divider></mat-divider>

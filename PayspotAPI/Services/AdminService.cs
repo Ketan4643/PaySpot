@@ -6,12 +6,15 @@ public class AdminService : IAdminService
     private readonly IMapper _mapper;
     private readonly DataContext _context;
     private readonly UserManager<AppUser> _userManager;
-    public AdminService(IUnitOfWork unitOfWork, IMapper mapper, DataContext context, UserManager<AppUser> userManager)
+    private readonly ICommonService _commonService;
+    public AdminService(IUnitOfWork unitOfWork, IMapper mapper, DataContext context, 
+        UserManager<AppUser> userManager, ICommonService commonService)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
         _context = context;
         _userManager = userManager;
+        _commonService = commonService;
     }
 
     public async Task<ICollection<QueryDto>> GetQueries(RequestParams requestParams)
@@ -53,6 +56,44 @@ public class AdminService : IAdminService
         // if(await _context.SaveChangesAsync() > 0) return true;
         return new CommonResponseDto((int)StatusCodes.Status500InternalServerError, "Something went wrong", "Please try after sometime");
         // return false;
+    }
+
+    public async Task<CommonResponseDto> TopupWallet(TopupModel model)
+    {
+        decimal availableBalance = await GetAvailableBalance(model.AgentId.ToLower());
+        string requestId = _commonService.GetRandomString(20);
+        TransactionDb topup = new TransactionDb
+        {
+            Mode = model.TopupMode,
+            AgentId = model.AgentId.ToLower(),
+            TransactionDateTime = DateTime.Now,
+            TransactionId = requestId,
+            RequestId = requestId,
+            Utility = Utility.Topup.ToString(),
+            UtilitySubType = model.TopupType,
+            UtilityPartner = UtilityPartner.Payspot.ToString(),
+            BaseAmount = model.TopupAmount,
+            CustomerFee = 0,
+            TransactionType = model.TopupMode,
+            DistributorId = 1,
+            CompletedOn = DateTime.Now,
+            Updatedby = model.UpdatedBy,
+            UpdatedOn = DateTime.Now,
+            RequestJson = JsonSerializer.Serialize(model),
+            ResponseJson = string.Empty,
+            TransactionStatusCode = (int)TransactionStatus.Success,
+            TransactionStatus = TransactionStatus.Success.ToString(),
+            OpeningBalance = availableBalance,
+            ClosingBalance = model.TopupType == TransactionMode.Credit.ToString() ?
+                availableBalance + model.TopupAmount : availableBalance = model.TopupAmount,
+            Remarks = model.Remarks ?? string.Empty
+        };
+
+        _context.TransactionDb.Add(topup);
+        
+        if(await _context.SaveChangesAsync() > 0) return new CommonResponseDto(StatusCodes.Status201Created, TransactionStatus.Success.ToString(), $"{topup.ClosingBalance.ToString()}");
+
+        return new CommonResponseDto(StatusCodes.Status400BadRequest, TransactionStatus.Failure.ToString(), "Topup Failed");
     }
 
     public async Task<CommonResponseDto> UpdateAddressAsync(AddressDto dto)
@@ -112,5 +153,17 @@ public class AdminService : IAdminService
         await _context.SaveChangesAsync();
 
         return new CommonResponseDto(StatusCodes.Status200OK, "Entry Updated", "Record Updated");
+    }
+
+    public async Task<decimal> GetAvailableBalance(string agentId)
+    {
+        var data = await _context.TransactionDb.OrderByDescending(x=> x.Id)
+            .FirstOrDefaultAsync(x => x.AgentId == agentId);
+        
+        if(data == null) return 0;
+
+        if(data.AgentId == agentId) return data.ClosingBalance;
+
+        return 0;
     }
 }
