@@ -17,6 +17,7 @@ public class DataContext : IdentityDbContext<AppUser, AppRole, int,
     public DbSet<Lead> Leads { get; set; }
     public DbSet<StateMaster> StateMasters { get; set; }
     public DbSet<TransactionDb> TransactionDb { get; set; }
+    public DbSet<Notification> Notifications { get; set; }
     
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -41,5 +42,7 @@ public class DataContext : IdentityDbContext<AppUser, AppRole, int,
         
         builder.ApplyConfiguration(new LeadConfiguration());
         builder.ApplyConfiguration(new StateMasterConfiguration());
+        builder.Entity<Notification>().ToTable("Notifications")
+            .HasKey(x => x.Id);
     }
 }

@@ -7,7 +7,7 @@ public class AdminService : IAdminService
     private readonly DataContext _context;
     private readonly UserManager<AppUser> _userManager;
     private readonly ICommonService _commonService;
-    public AdminService(IUnitOfWork unitOfWork, IMapper mapper, DataContext context, 
+    public AdminService(IUnitOfWork unitOfWork, IMapper mapper, DataContext context,
         UserManager<AppUser> userManager, ICommonService commonService)
     {
         _unitOfWork = unitOfWork;
@@ -22,7 +22,7 @@ public class AdminService : IAdminService
         // var queries = await _unitOfWork.Leads.GetAll();
 
         // var queries = await _unitOfWork.Leads.GetPagedList(requestParams);
-        var queries = await _unitOfWork.Leads.GetAll(q=> q.PendingStatus == true);
+        var queries = await _unitOfWork.Leads.GetAll(q => q.PendingStatus == true);
         var result = _mapper.Map<IList<QueryDto>>(queries);
         return result;
     }
@@ -60,13 +60,20 @@ public class AdminService : IAdminService
 
     public async Task<CommonResponseDto> TopupWallet(TopupModel model)
     {
-        decimal availableBalance = await GetAvailableBalance(model.AgentId.ToLower());
+        model.AgentId = model.AgentId.ToLower();
+        decimal availableBalance = await GetAvailableBalance(model.AgentId);
+
+        if(model.TopupType == TransactionMode.Debit.ToString() && availableBalance < model.TopupAmount)
+            return new CommonResponseDto(StatusCodes.Status200OK, TransactionStatus.Failure.ToString(), $"Insufficient Balance {availableBalance.ToString()}");
+        
         string requestId = _commonService.GetRandomString(20);
+        DateTime dateTime = DateTime.Now;
+
         TransactionDb topup = new TransactionDb
         {
             Mode = model.TopupMode,
-            AgentId = model.AgentId.ToLower(),
-            TransactionDateTime = DateTime.Now,
+            AgentId = model.AgentId,
+            TransactionDateTime = dateTime,
             TransactionId = requestId,
             RequestId = requestId,
             Utility = Utility.Topup.ToString(),
@@ -76,24 +83,37 @@ public class AdminService : IAdminService
             CustomerFee = 0,
             TransactionType = model.TopupMode,
             DistributorId = 1,
-            CompletedOn = DateTime.Now,
+            CompletedOn = dateTime,
             Updatedby = model.UpdatedBy,
-            UpdatedOn = DateTime.Now,
+            UpdatedOn = dateTime,
             RequestJson = JsonSerializer.Serialize(model),
             ResponseJson = string.Empty,
             TransactionStatusCode = (int)TransactionStatus.Success,
             TransactionStatus = TransactionStatus.Success.ToString(),
             OpeningBalance = availableBalance,
             ClosingBalance = model.TopupType == TransactionMode.Credit.ToString() ?
-                availableBalance + model.TopupAmount : availableBalance = model.TopupAmount,
+                availableBalance + model.TopupAmount : availableBalance - model.TopupAmount,
             Remarks = model.Remarks ?? string.Empty
         };
 
         _context.TransactionDb.Add(topup);
-        
-        if(await _context.SaveChangesAsync() > 0) return new CommonResponseDto(StatusCodes.Status201Created, TransactionStatus.Success.ToString(), $"{topup.ClosingBalance.ToString()}");
+        await _context.SaveChangesAsync();
 
-        return new CommonResponseDto(StatusCodes.Status400BadRequest, TransactionStatus.Failure.ToString(), "Topup Failed");
+        string notificationText = ConstantValues.TopupNotification;
+
+        Notification notification = new Notification
+        {
+            AgentId = model.AgentId,
+            Content = notificationText.Replace("{type}", model.TopupType).Replace("{amount}", model.TopupAmount.ToString()),
+            CreatedOn = dateTime,
+            Expiry = dateTime.AddHours(24)
+        };
+
+        _context.Notifications.Add(notification);
+        await _context.SaveChangesAsync();
+        return new CommonResponseDto(StatusCodes.Status201Created, TransactionStatus.Success.ToString(), $"{topup.ClosingBalance.ToString()}");
+
+        // return new CommonResponseDto(StatusCodes.Status400BadRequest, TransactionStatus.Failure.ToString(), "Topup Failed");
     }
 
     public async Task<CommonResponseDto> UpdateAddressAsync(AddressDto dto)
@@ -134,7 +154,7 @@ public class AdminService : IAdminService
         _context.Users.Update(user);
         await _context.SaveChangesAsync();
 
-        return new CommonResponseDto(StatusCodes.Status201Created,user.UserName,"Detail Updated");
+        return new CommonResponseDto(StatusCodes.Status201Created, user.UserName, "Detail Updated");
     }
 
     public Task<CommonResponseDto> UpdateKycDocumentsAsync(KycDocumentDto dto)
@@ -146,7 +166,7 @@ public class AdminService : IAdminService
     {
         // var lead = await _unitOfWork.Leads.Get(query =>  query.Id == model.Id);
         var lead = await _context.Leads.Where(x => x.Id == model.Id).FirstOrDefaultAsync();
-        if(lead == null) return new CommonResponseDto(StatusCodes.Status404NotFound, "Not found", "Record not found");
+        if (lead == null) return new CommonResponseDto(StatusCodes.Status404NotFound, "Not found", "Record not found");
 
         lead.PendingStatus = false;
         // await _unitOfWork.Save();
@@ -157,12 +177,12 @@ public class AdminService : IAdminService
 
     public async Task<decimal> GetAvailableBalance(string agentId)
     {
-        var data = await _context.TransactionDb.OrderByDescending(x=> x.Id)
+        var data = await _context.TransactionDb.OrderByDescending(x => x.Id)
             .FirstOrDefaultAsync(x => x.AgentId == agentId);
-        
-        if(data == null) return 0;
 
-        if(data.AgentId == agentId) return data.ClosingBalance;
+        if (data == null) return 0;
+
+        if (data.AgentId == agentId) return data.ClosingBalance;
 
         return 0;
     }

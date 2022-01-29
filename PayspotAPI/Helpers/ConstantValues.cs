@@ -3,6 +3,7 @@ namespace PayspotAPI.Helpers;
 public static class ConstantValues
 {
     public static string DefaultPasword = "P@ssw0rd";
+    public static string TopupNotification = "Your wallet is {type} by INR {amount}";
 }
 
 public enum Roles
