@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/psnehi/Projects/PaySpotProjects/Payspot/PayspotAPI/PayspotAPI.csproj": {}
+    "D:\\PayspotFinalProject\\PayspotAPI\\PayspotAPI.csproj": {}
   },
   "projects": {
-    "/Users/psnehi/Projects/PaySpotProjects/Payspot/PayspotAPI/PayspotAPI.csproj": {
+    "D:\\PayspotFinalProject\\PayspotAPI\\PayspotAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/psnehi/Projects/PaySpotProjects/Payspot/PayspotAPI/PayspotAPI.csproj",
+        "projectUniqueName": "D:\\PayspotFinalProject\\PayspotAPI\\PayspotAPI.csproj",
         "projectName": "PayspotAPI",
-        "projectPath": "/Users/psnehi/Projects/PaySpotProjects/Payspot/PayspotAPI/PayspotAPI.csproj",
-        "packagesPath": "/Users/psnehi/.nuget/packages/",
-        "outputPath": "/Users/psnehi/Projects/PaySpotProjects/Payspot/PayspotAPI/obj/",
+        "projectPath": "D:\\PayspotFinalProject\\PayspotAPI\\PayspotAPI.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "D:\\PayspotFinalProject\\PayspotAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/psnehi/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -115,7 +115,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

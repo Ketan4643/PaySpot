@@ -1,0 +1,112 @@
+<div class="bg-image" >
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-4" style="margin-top: 150px;">
+            <br>
+            <mat-card class="border">
+                <mat-card-title class="text-center">Electricity Bill </mat-card-title>
+                <mat-card-subtitle></mat-card-subtitle>
+                <br>
+                <mat-divider [inset]="true"></mat-divider>
+                <mat-divider [vertical]="true"></mat-divider>
+                <br>
+                <mat-card-content class="bld">
+                    <form  [formGroup]="BillForm" (ngSubmit)="SendBill()">
+                        <!-- <mat-form-field appearance="outline"> -->
+                        <mat-form-field appearance="fill" class="tnt">
+                            <mat-label><b>Enter State</b></mat-label>
+                            <mat-select formControlName="state" for="state"  matNativeControl required>
+                                <mat-option value="Punjab"><b>Punjab</b></mat-option>
+                                <mat-option value="Harayana"><b>Harayana</b></mat-option>
+                                <mat-option value="Rajasthan"><b>Rajasthan</b></mat-option>
+                                <mat-option value="Himachal"><b>Himachal</b></mat-option>
+                              </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" class="tnt">
+                            <mat-label for="provider"><b>Enter Provider</b></mat-label>
+                            <mat-select formControlName="provider" id="provider" matNativeControl required>
+                                <mat-option value="PSPCL"><b>PSPCL</b></mat-option>
+                                
+                              </mat-select>
+                            <!-- <button mat-icon-button matSuffix (click)="hide = !hide" 
+                                [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide"> -->
+                            
+                            <!-- </button> -->
+                        </mat-form-field>
+
+                        <mat-radio-group color="primary"  formControlName="type" >
+                          <mat-radio-button value="1"><b>Advance&emsp;</b>&emsp;</mat-radio-button> 
+                          <mat-radio-button value="2"><b>Regular</b></mat-radio-button>
+                        </mat-radio-group>
+
+                        <mat-form-field appearance="fill" class="tnt">
+                          <mat-label for="account"><b>Enter Account Number</b></mat-label>
+                          <input matInput type="text" formControlName="account" name="Account" id="account" autofocus="true"
+                              required>
+                      </mat-form-field>
+
+                        <mat-form-field appearance="fill" class="tnt">
+                            <mat-label for="name"><b>Enter Name</b></mat-label>
+                            <input matInput type="text" formControlName="name" name="name"  id= "name" autofocus="true"
+                                required>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="fill" class="tnt">
+                            <mat-label for="phone"><b>Enter Phone</b></mat-label>
+                            <input matInput type="text" name="Phone" formControlName="phone"  id="phone" autofocus="true">
+                        </mat-form-field>
+
+                        
+                        
+                        <button mat-raised-button color="primary"  type="submit"
+                            class="btn btn-primary btn-lg btn-block mt-4" ><b>Submit</b>
+                             
+                        </button>
+                    </form>
+
+                </mat-card-content>
+                <!-- <img mat-card-image src="../../../assets/payspot/Logo.png">
+                <mat-card-actions></mat-card-actions> -->
+                
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="content">
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">State</button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" > Punjab</a>
+            <a class="dropdown-item" > Harayana</a>
+            
+          </div>
+        </div>
+        <input type="text" class="form-control" aria-label="Enter state">
+      </div>
+    
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Provider</button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item">PSPCL</a>
+          </div>
+        </div>
+        <input type="text" class="form-control" aria-label="Enter state">
+      </div>
+
+      <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label">Name</label>
+        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter Name">
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label">Account Number</label>
+        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder=" Enter Account Number">
+      </div>
+      
+</div>
+ -->
+

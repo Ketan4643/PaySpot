@@ -12,11 +12,13 @@ import { JwtInterceptor } from "./_interceptoprs/JwtInterceptor";
 import { LoadingInterceptor } from './_interceptoprs/loading.interceptor';
 import { Menuitems } from './_models/menuitems';
 import { ComponentsModule } from './components/components.module';
+import { UtilitiesComponent } from './components/utilities/utilities.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HasRoleDirective
+    HasRoleDirective,
+    UtilitiesComponent
   ],
   imports: [
     BrowserModule,

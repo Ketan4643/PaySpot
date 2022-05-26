@@ -1,0 +1,51 @@
+.content{
+    align-self: center;
+    align-content: center;
+    
+    vertical-align: middle;
+    max-width: 500px;
+    max-block-size: 500px;
+    align-tracks: center;
+    margin: auto;
+    padding: 50px;
+  }
+
+  .bg-image {
+    /* background-image: url('../../../assets/others/bbps.jpeg'); */
+    width: 100%;
+    height: 800px;
+    background-size: cover;
+    background-position: center center;
+    background-blend-mode: lighten;
+  }
+
+  .bg-image::before{
+      content: "";
+    background-image: url('../../../assets/others/Util-back.jpg');
+    opacity: 25%;
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+  }
+
+
+  .tnt{
+    width: 100%;
+  }
+
+  .border{
+    border-radius: 4%;
+    width: 115%;
+    
+  }
+
+  .text-center{
+      padding-top: 20px;
+      font-size: x-large;
+      font-weight: bold;
+      
+  }
+ 
