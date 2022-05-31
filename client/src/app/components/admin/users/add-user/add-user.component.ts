@@ -61,7 +61,8 @@ export class AddUserComponent implements OnInit {
       basicInfo: this.basicInfo,
       // addressInfo: new FormArray([this.workAddressInfo, this.homeAddressInfo])
       workAddressInfo: this.workAddressInfo,
-      homeAddressInfo: this.homeAddressInfo
+      homeAddressInfo: this.homeAddressInfo,
+      kycInfo: this.kycInfo
     })
   }
 
@@ -100,8 +101,20 @@ export class AddUserComponent implements OnInit {
       pincode: new FormControl(null, [Validators.required]),
       stateCode: new FormControl(null, [Validators.required]),
       noOfPerson: new FormControl(null, [Validators.required])
-    })
-  }
+    });
+
+    this.kycInfo = this.formBuilder.group({
+      profImage: new FormControl(''),
+      adhar: new FormControl(''),
+      panCard: new FormControl(''),
+      addProof: new FormControl(''),
+      addProofImage: new FormControl('')
+
+    });
+  };
+
+    
+
   //returns the form control object based on the form control name
   getFormControl(controlName: string): FormControl {
     return this.formGroup.get(controlName) as FormControl;

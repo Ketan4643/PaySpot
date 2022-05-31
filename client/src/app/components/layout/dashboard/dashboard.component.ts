@@ -19,6 +19,10 @@ export class DashboardComponent implements OnInit {
   isLoading: boolean = false;
   columnChart: Chart = new Chart(columnChartOption);
   donutChart: Chart = new Chart(donutChartOption);
+
+  nam: String;
+  acc: String;
+  data: any;
   
   constructor(private mediaObserver: MediaObserver, private adminService:AdminService) { }
 
@@ -37,6 +41,10 @@ export class DashboardComponent implements OnInit {
         this.cardColspan = 2;
       }
     })
+
+    this.data=JSON.parse(localStorage.getItem('form-data'));
+    this.nam=this.data.name;
+    this.acc=this.data.account;
   }
 
   // getQueries() {

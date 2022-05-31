@@ -22,7 +22,8 @@ export class UtilitiesComponent implements OnInit {
       account: new FormControl(''),
       state: new FormControl(''),
       provider: new FormControl(''),
-      type: new FormControl('')
+      type: new FormControl(''),
+      amount: new FormControl('')
 
     }
     );
@@ -39,7 +40,6 @@ export class UtilitiesComponent implements OnInit {
     this.nam=this.data.name;
     this.acc=this.data.account;
 
-    
   }
   // RetBill(){
   //   let data=JSON.parse(localStorage.getItem('form-data'));
