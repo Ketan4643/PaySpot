@@ -11,12 +11,15 @@ import { UsersComponent } from './components/admin/users/users.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AddUserComponent } from './components/admin/users/add-user/add-user.component';
 import { UtilitiesComponent } from './components/utilities/utilities.component';
+import { TopUpComponent } from './components/top-up/top-up.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'util', component: UtilitiesComponent },
+  { path: 'topup', component: TopUpComponent },
+
 
   {
     path: '', component: LayoutComponent, canActivate: [AuthGuard],

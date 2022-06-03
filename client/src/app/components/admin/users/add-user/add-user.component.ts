@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from "@angular/forms";
 import { debounceTime, tap, switchMap, startWith, map } from "rxjs/operators";
 import { States } from 'src/app/_models/states';
 import { AdminService } from 'src/app/_services/admin.service';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+
 
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
+
 export class AddUserComponent implements OnInit {
   formGroup: FormGroup;
   states: States[] = [];
@@ -23,6 +26,12 @@ export class AddUserComponent implements OnInit {
   homeAddressInfo: FormGroup;
   kycInfo: FormGroup;
   addressInfo: FormArray = new FormArray([]);
+  private selectedFile: File;
+
+  onFileSelect(event) {
+    this.selectedFile = event.target.files[0];
+    console.log(this.selectedFile.name);
+  }
 
   constructor(private adminService: AdminService, private formBuilder: FormBuilder) {
     // this.formGroup = new FormGroup({

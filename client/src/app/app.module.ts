@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,19 +15,22 @@ import { LoadingInterceptor } from './_interceptoprs/loading.interceptor';
 import { Menuitems } from './_models/menuitems';
 import { ComponentsModule } from './components/components.module';
 import { UtilitiesComponent } from './components/utilities/utilities.component';
+import { TopUpComponent } from './components/top-up/top-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HasRoleDirective,
-    UtilitiesComponent
+    UtilitiesComponent,
+    TopUpComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ComponentModule,
     BrowserAnimationsModule,
-    ComponentsModule
+    ComponentsModule,
+    NgxMatFileInputModule
   ],
   providers: [
     Menuitems,

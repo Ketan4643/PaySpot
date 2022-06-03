@@ -240,27 +240,67 @@
 
   </mat-step>
   <mat-step label="KYC Info">
-    <!-- <form [formGroup]="formGroup">
-    <div class="form-container mb mt" formGroupName="kycInfo">
-        <mat-form-field>
-        <mat-label for="profImage ">Choose an image</mat-label>
-        <mat-input  formControlName="profImage"></mat-input>
-      </mat-form-field>
-    
-      <mat-form-field appearance="fill" >
-        <mat-label for="addProof"><b>Select address proof</b></mat-label>
-        <mat-select formControlName="addProof" id="addProof" matNativeControl required>
-            <mat-option value="Rent-Deed"><b>Rent-Deed</b></mat-option>
-            <mat-option value="Electricity-Bill"><b>Electricity-Bill</b></mat-option>
-            <mat-option value="Water-Bill"><b>Water-Bill</b></mat-option>
-            <mat-option value="Gas-Bill"><b>Gas-Bill</b></mat-option>
-        </mat-select>
-        <mat-label for="addProofImage ">Choose an image</mat-label>
-        <mat-input type="file" formControlName="addProofImage" accept="image/jpeg image/jpg"> </mat-input>
-      </mat-form-field>
-       
-    </div>
-    </form> -->
+    <form [formGroup]="formGroup">
+      <div class="form-container mb mt" formGroupName="kycInfo">
+        <h2 class="section-header" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="space-between stretch">
+          <div fxFlex="1 1 40%" fxFlex="1 1 100%">KYC Information</div>
+          <div fxFlex="1 1 60%" fxFlex="1 1 100%" [ngClass.gt-xs]="{ 'text-right': true}">
+            <button mat-flat-button color="primary" matStepperNext>
+              <span>Go to Final</span>
+              <mat-icon>chevron_right</mat-icon>
+            </button>
+          </div>
+        </h2>
+        <div fxLayout="row" cols="2" fxLayoutGap.gt-sm="40px" fxLayout.lt-md="column"
+        fxLayoutAlign="space-between center">
+        <!-- <div fxFlex="1 1 calc(25% - 20px)" fxFlex.lt-md="1 1 100%"> -->
+          <mat-form-field colspan="2" fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%" class="w-100" color="primary" appearance="fill">
+          
+            <mat-label>Select Profile Photo</mat-label>
+            <ngx-mat-file-input formControlName="profImage" >
+               <mat-icon ngxMatFileInputIcon>folder</mat-icon>
+            </ngx-mat-file-input>       
+          </mat-form-field>
+
+           <mat-form-field colspan="3" fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%" class="w-100" color="primary" appearance="fill">
+            <mat-label>Upload Pan card</mat-label>
+            <ngx-mat-file-input formControlName="panCard" required >
+               <mat-icon ngxMatFileInputIcon>folder</mat-icon>
+            </ngx-mat-file-input>       
+           </mat-form-field>
+        </div>
+        <div fxLayout="row" cols="4" fxLayoutGap.gt-sm="40px" fxLayout.lt-md="column"
+        fxLayoutAlign="space-between center">
+           <mat-form-field colspan="2" fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%" class="w-100" color="primary" appearance="fill">
+            <mat-label>Upload Adhaar card</mat-label>
+            <ngx-mat-file-input formControlName="adhar" required >
+               <mat-icon ngxMatFileInputIcon>folder</mat-icon>
+            </ngx-mat-file-input>       
+           </mat-form-field>
+          </div>
+          <div fxLayout="row" cols="2" fxLayoutGap.gt-sm="40px" fxLayout.lt-md="column"
+          fxLayoutAlign="space-between center">
+           <mat-form-field colspan="3" fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%" class="w-100" color="primary" appearance="fill">
+            <mat-label>Choose the Proof of Address</mat-label>
+            <mat-select formControlName="addProof" for="addProof"  matNativeControl required>
+                <mat-option value="Rent Deed">Rent Deed</mat-option>
+                <mat-option value="Electricity Bill">Electricity Bill</mat-option>
+                <mat-option value="Gas Bill">Gas Bill</mat-option>
+                <mat-option value="Water Bill">Water Bill</mat-option>
+              </mat-select>
+           </mat-form-field>
+
+           <mat-form-field class="newb" colspan="3" fxFlex="1 1 100%" fxFlex.lt-md="1 1 100%" class="w-100" color="primary" appearance="fill">
+            <mat-label>Upload Proof of Address</mat-label>
+            <ngx-mat-file-input formControlName="addProofImage" required >
+               <mat-icon ngxMatFileInputIcon>folder</mat-icon>
+            </ngx-mat-file-input>       
+           </mat-form-field>
+
+          </div>
+        
+      </div>
+    </form>
     
   </mat-step>
   

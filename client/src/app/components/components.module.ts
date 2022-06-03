@@ -18,6 +18,8 @@ import { ContactComponent } from './contact/contact.component';
 import { InputValidationComponent } from './_form/input-validation/input-validation.component';
 import { DateInputComponent } from './_form/date-input/date-input.component';
 import { AddUserComponent } from './admin/users/add-user/add-user.component';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { AddUserComponent } from './admin/users/add-user/add-user.component';
     ContactComponent,
     InputValidationComponent,
     DateInputComponent,
-    AddUserComponent
+    AddUserComponent,
+
   ],
   imports: [
     CommonModule,
@@ -42,7 +45,8 @@ import { AddUserComponent } from './admin/users/add-user/add-user.component';
     ReactiveFormsModule,
     BsDropdownModule,
     RouterModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    NgxMatFileInputModule
   ],
   exports: [
     NavbarComponent,

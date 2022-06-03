@@ -47,6 +47,8 @@ import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { ChartModule } from 'angular-highcharts';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+
 
 const MaterialComponents = [
     CommonModule,
@@ -102,7 +104,8 @@ const MaterialComponents = [
 @NgModule({
   declarations: [],
   imports: [
-    MaterialComponents
+    MaterialComponents,
+    NgxMatFileInputModule
   ],
   exports: [
     MaterialComponents
