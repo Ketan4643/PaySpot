@@ -16,13 +16,17 @@ import { Menuitems } from './_models/menuitems';
 import { ComponentsModule } from './components/components.module';
 import { UtilitiesComponent } from './components/utilities/utilities.component';
 import { TopUpComponent } from './components/top-up/top-up.component';
+import { RechargeComponent } from './components/recharge/recharge.component';
+import { UploadSlipComponent } from './components/upload-slip/upload-slip.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HasRoleDirective,
     UtilitiesComponent,
-    TopUpComponent
+    TopUpComponent,
+    RechargeComponent,
+    UploadSlipComponent
   ],
   imports: [
     BrowserModule,

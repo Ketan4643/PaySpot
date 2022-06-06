@@ -1,5 +1,6 @@
 <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" class="nav">
   <!-- left box of toolbar starts -->
+  <mat-toolbar-row>
   <ng-container  *ngIf="currentUser !== null">
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <button mat-icon-button (click)="sideNavToggle()" matTooltip="Sidebar">
@@ -58,7 +59,16 @@
     <mat-divider></mat-divider>
     <button mat-menu-item>You have received topup of 5 L</button>
   </mat-menu>
-
+</mat-toolbar-row>
+<mat-toolbar-row>
+  <span>Icons</span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar-row>
 
 </mat-toolbar>
 <mat-expansion-panel [expanded]="showStatistics">

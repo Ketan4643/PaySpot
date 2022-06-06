@@ -100,6 +100,15 @@
           <span class="full-width" *ngIf="isExpanded || isShowing">Leads</span>
           <mat-icon mat-list-icon>query_stats</mat-icon>
         </a>
+        <a mat-list-item routerLink="util" routerLinkActive="link-active">
+          <span class="full-width" *ngIf="isExpanded || isShowing">Utilities</span>
+          <mat-icon mat-list-icon>flash_on</mat-icon>
+        </a>
+        <a mat-list-item routerLink="topup" routerLinkActive="link-active">
+          <span class="full-width" *ngIf="isExpanded || isShowing">Top-Up Wallet</span>
+          <mat-icon mat-list-icon>folder_open</mat-icon>
+        </a>
+
         <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
           <span class="full-width" *ngIf="isExpanded || isShowing">User Management</span>
           <mat-icon mat-list-icon>person_outline</mat-icon>
@@ -107,6 +116,7 @@
             expand_more
           </mat-icon>
         </mat-list-item>
+        
         <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
           <a mat-list-item routerLink="/add-user" routerLinkActive="link-active">Add User</a>
           <a mat-list-item routerLink="/users" routerLinkActive="link-active">View Users</a>
@@ -120,6 +130,8 @@
             <a mat-list-item routerLink="/dashboard" routerLinkActive="link-active">SubSubmenu Item 2</a>
           </div> -->
         </div>
+
+        
       </mat-nav-list>
     </mat-sidenav>
 

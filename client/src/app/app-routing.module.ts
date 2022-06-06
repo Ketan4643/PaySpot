@@ -12,6 +12,9 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AddUserComponent } from './components/admin/users/add-user/add-user.component';
 import { UtilitiesComponent } from './components/utilities/utilities.component';
 import { TopUpComponent } from './components/top-up/top-up.component';
+import { UploadSlipComponent } from './components/upload-slip/upload-slip.component';
+import { RechargeComponent} from './components/recharge/recharge.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -19,6 +22,9 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'util', component: UtilitiesComponent },
   { path: 'topup', component: TopUpComponent },
+  { path: 'slipupload', component: UploadSlipComponent },
+  { path: 'recharge', component: RechargeComponent },
+
 
 
   {

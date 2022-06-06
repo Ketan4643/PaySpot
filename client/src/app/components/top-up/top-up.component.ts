@@ -6,16 +6,17 @@ export interface PeriodicElement {
   position: number;
   AgentId: number;
   StoreName: string;
+  phone:string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Abhishek', AgentId: 10079, StoreName: 'Gopal Communications'},
-  {position: 2, name: 'Abosh Kumar', AgentId: 40026, StoreName: 'Deep Tv centre'},
-  {position: 3, name: 'Ali Raj ', AgentId: 6941, StoreName: 'Ali Telecom'},
-  {position: 4, name: 'Karan Jindal', AgentId: 90122, StoreName: 'Jindal Karayana Store'},
-  {position: 5, name: 'Karan Singh', AgentId: 10811, StoreName: 'Rana Ent.'},
-  {position: 6, name: 'Sandeep Kumar', AgentId: 120107, StoreName: 'Sandeep Tel.'},
-  {position: 7, name: 'Bipin Kumar', AgentId: 140067, StoreName: 'OM Bipin'},
+  {position: 1, name: 'Abhishek', AgentId: 10079, StoreName: 'Gopal Communications',phone:'9988770000'},
+  {position: 2, name: 'Abosh Kumar', AgentId: 40026, StoreName: 'Deep Tv centre', phone:'9988770000'},
+  {position: 3, name: 'Ali Raj ', AgentId: 6941, StoreName: 'Ali Telecom', phone:'9988770000'},
+  {position: 4, name: 'Karan Jindal', AgentId: 90122, StoreName: 'Jindal Karayana Store', phone:'9988770000'},
+  {position: 5, name: 'Karan Singh', AgentId: 10811, StoreName: 'Rana Ent.', phone:'9988770000'},
+  {position: 6, name: 'Sandeep Kumar', AgentId: 120107, StoreName: 'Sandeep Tel.', phone:'9988770000'},
+  {position: 7, name: 'Bipin Kumar', AgentId: 140067, StoreName: 'OM Bipin', phone:'9988770000'},
   
 ];
 
@@ -29,12 +30,15 @@ export class TopUpComponent implements OnInit {
   searchKey: string;
   
 
-  displayedColumns: string[] = ['position', 'name', 'AgentId', 'StoreName','TopUp','save' ];
+  displayedColumns: string[] = ['position', 'name', 'AgentId', 'StoreName','phone','TopUp','check','confirm' ];
   dataSource = ELEMENT_DATA;
-  data=ELEMENT_DATA;
+  data={"data":ELEMENT_DATA};
 
+  show(ele:any){
+    console.log(ele.name);
+  }
   // applyfilter(){
-  //   this.datato.filter=this.searchKey.trim().toLowerCase();
+  //   this.data.filter=this.searchKey.trim().toLowerCase();
   // }
   constructor() { }
 

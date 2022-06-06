@@ -44,10 +44,10 @@
   .border{
     border-radius: 4%;
     
-    opacity: .9;
+    opacity: .95;
     align-self: center;
-    margin:40px;
-    padding:40px;
+    margin:60px;
+    padding:50px;
   }
 
   .text-center{
