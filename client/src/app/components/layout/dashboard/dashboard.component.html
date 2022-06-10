@@ -59,31 +59,36 @@
         <div class="scroll" [chart]="columnChart"></div>
     </mat-grid-tile>
     <!--Sixth Tile-->
-
-    <mat-grid-tile colspan="4" fxLayout="row" class="dashboard-tile dashboard-tile-5 tle" >
-        <div>
-            <a routerLink="/topup">Top-Up Here</a>
+    <mat-grid-tile colspan="4" fxLayout="row"  >
+        <div style="margin-bottom: -20px;">
+            <h2>Transactions</h2>
         </div>
+    </mat-grid-tile>
+    
+    
+    <div>
+        <ngContainer *ngFor="let data of cardData">
+            <mat-grid-tile colspan="4" fxLayout="row" class="dashboard-tile dashboard-tile-5 tle" >
+                <div class="lft">
+                    Account : {{data.acc}} <br>
+                      
+                    {{data.op}} - {{data.type}}  <br>
+                   <div class="sub"> Status : {{data.status}} <br></div>
+                </div>
+                <div class="rt">
+                    <div class="green">
+                        Rs. {{data.amount}}
+                    </div>
+                    <div class="pr">
+                        <mat-icon>print</mat-icon>
+                    </div>
+                </div>
+                
+               
+            </mat-grid-tile>
+        </ngContainer>
+    </div>
        
-    </mat-grid-tile>    
-    <mat-grid-tile colspan="4" fxLayout="row" class="dashboard-tile dashboard-tile-5 tle" >
-        <div>
-            <a routerLink="/util">Utilities Here</a>
-        </div>
-       
-    </mat-grid-tile>  
-    <mat-grid-tile colspan="4" fxLayout="row" class="dashboard-tile dashboard-tile-5 tle" >
-        <div>
-            <a routerLink="/slipupload">Upload Slip Here</a>
-        </div>
-       
-    </mat-grid-tile> 
-
-    <mat-grid-tile colspan="4" fxLayout="row" class="dashboard-tile dashboard-tile-5 tle" >
-        <div>
-            <a routerLink="/recharge">Mobile Recharge Here</a>
-        </div>
-       
-    </mat-grid-tile> 
+    
     
 </mat-grid-list>

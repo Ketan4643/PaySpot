@@ -1,87 +1,262 @@
 
 <p>
     <mat-toolbar color="primary" class="tlbr"> 
-      <span>Upload Slip</span>
+      <span>Recharge</span>
     </mat-toolbar>
   </p>
   
-  <div class="bg-image" >
-      <div class="row d-flex justify-content-center">
-          <div style="margin-top: 100px;">
-              <br>
-              <!-- <div class="view view-cascade gradient-card-header narrower py-2 mx-4 mb-3 page-header-title">
-                <div>
-                  <h4 class="col-xs-hide">PREPAID RECHARGE  - MOBILE</h4>
-                  <h6 class="col-md-hide">PREPAID RECHARGE  - MOBILE</h6>
+  <mat-tab-group mat-align-tabs="center" class="float">
+        <mat-tab class="float" label="Prepaid">
+            <ng-template mat-tab-label>
+                <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+                <mat-icon class="example-tab-icon">phone_iphone</mat-icon>
+                <span>Prepaid</span>
                 </div>
-              </div> -->
-              
-                <mat-card class="border">
-                
-                  <mat-card-title class="text-center">
-                    <div color="primary">Mobile Recharge</div> 
-                  </mat-card-title>
-                  <mat-card-subtitle></mat-card-subtitle>
-                  <br>
-                  <mat-divider [inset]="true"></mat-divider>
-                  <mat-divider [vertical]="true"></mat-divider>
-                  <br>
-                  <mat-card-content class="bld">
-                      <form>
-                          <!-- <mat-form-field appearance="outline"> -->
-                            <mat-form-field appearance="fill" class="tnt">
-                                <input matInput placeholder="Mobile Number"/>
-                             </mat-form-field>
-                            
-                              <mat-form-field appearance="fill" class="tnt">
-                                <mat-label>Operator</mat-label>
-                                <mat-select  matNativeControl required>
-                                    <mat-option value="JIO">JIO</mat-option>
-                                    <mat-option value="AIRTEL">AIRTEL</mat-option>
-                                    <mat-option value="VODAFONE-IDEA">VODAFONE-IDEA</mat-option>
-                                    <mat-option value="BSNL">BSNL</mat-option>
-                                  
-                                </mat-select>
-                            </mat-form-field >
+              </ng-template>
+            <div class="bg-image" >
+                <div class="row d-flex justify-content-center">
+                    <div style="margin-top: 100px;">
+                        <br>                    
+                          <mat-card class="border">
+                            <mat-card-title class="text-center">
+                              <div color="primary" class="over">Mobile Recharge [PREPAID]</div> 
+                            </mat-card-title>
+                            <br>
+                            <mat-divider [inset]="true"></mat-divider>
+                            <mat-divider [vertical]="true"></mat-divider>
+                            <br>
+                            <mat-card-content class="bld">
+                                <form [formGroup]="PrepaidForm">
+                                    <!-- <mat-form-field appearance="outline"> -->
+                                      <mat-form-field appearance="fill" class="tnt">
+                                          <input formControlName="mobile" matInput placeholder="Mobile Number"/>
+                                       </mat-form-field>
+                                      
+                                        <mat-form-field appearance="fill" class="tnt">
+                                          <mat-label>Operator</mat-label>
+                                          <mat-select formControlName="operator" matNativeControl required>
+                                              <mat-option value="JIO">JIO</mat-option>
+                                              <mat-option value="AIRTEL">AIRTEL</mat-option>
+                                              <mat-option value="VODAFONE-IDEA">VODAFONE-IDEA</mat-option>
+                                              <mat-option value="BSNL">BSNL</mat-option>
+                                            
+                                          </mat-select>
+                                      </mat-form-field >
+          
+                                      <mat-form-field appearance="fill" class="tnt">
+                                          <mat-label>CIrcle</mat-label>
+                                          <mat-select formControlName="circle" matNativeControl required>
+                                              <mat-option value="Andhra Pradesh">Cash</mat-option>
+                                              <mat-option value="Assam">RTGS</mat-option>
+                                              <mat-option value="Bihar">NEFT</mat-option>
+                                              <mat-option value="Chennai">IMPS</mat-option>
+                                              <mat-option value="Delhi">Cheque</mat-option>
+                                              <mat-option value="Gujarat">Bank Transfer</mat-option>
+                                              <mat-option value="HArayana">CDM Deposit</mat-option>
+                                              <mat-option value="Punjab">CDM Deposit</mat-option>
+                                              
+          
+                      
+                                          </mat-select>
+                                        </mat-form-field >
 
-                            <mat-form-field appearance="fill" class="tnt">
-                                <mat-label>CIrcle</mat-label>
-                                <mat-select  matNativeControl required>
-                                    <mat-option value="Andhra Pradesh">Cash</mat-option>
-                                    <mat-option value="Assam">RTGS</mat-option>
-                                    <mat-option value="Bihar">NEFT</mat-option>
-                                    <mat-option value="Chennai">IMPS</mat-option>
-                                    <mat-option value="Delhi">Cheque</mat-option>
-                                    <mat-option value="Gujarat">Bank Transfer</mat-option>
-                                    <mat-option value="HArayana">CDM Deposit</mat-option>
-                                    <mat-option value="Punjab">CDM Deposit</mat-option>
+                                       <mat-form-field appearance="fill" class="tnt">
+                                        <input formControlName="amount" matInput placeholder="Amount"/>
+                                     </mat-form-field>
+          
+                                     
                                     
+                                    
+                                    <button mat-raised-button color="primary"  type="submit"
+                                        class="btn btn-primary btn-lg btn-block mt-4" ><b>Submit</b>
+                                         
+                                    </button>
+                                </form>
+                                
 
             
-                                </mat-select>
-                            </mat-form-field >
+                            </mat-card-content>
+                            <!-- <img mat-card-image src="../../../assets/payspot/Logo.png">
+                            <mat-card-actions></mat-card-actions> -->
+                            
+                        </mat-card>
+          
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
 
-                             
+        <mat-tab class="float" label="Postpaid">
+            <ng-template mat-tab-label>
+                <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+                <mat-icon class="example-tab-icon">phone_iphone</mat-icon>
+                <span>Postpaid</span>
+                </div>
+              </ng-template>
+            <div class="bg-image" >
+                <div class="row d-flex justify-content-center">
+                    <div style="margin-top: 100px;">
+                        <br>                    
+                          <mat-card class="border">
+                            <mat-card-title class="text-center">
+                              <div color="primary" class="over">Mobile Recharge [POSTPAID]</div> 
+                            </mat-card-title>
+                            <br>
+                            <mat-divider [inset]="true"></mat-divider>
+                            <mat-divider [vertical]="true"></mat-divider>
+                            <br>
+                            <mat-card-content class="bld">
+                                <form [formGroup]="PostpaidForm">
+                                    <!-- <mat-form-field appearance="outline"> -->
+                                      <mat-form-field appearance="fill" class="tnt">
+                                          <input formControlName="mobile" matInput placeholder="Mobile Number"/>
+                                       </mat-form-field>
+                                      
+                                        <mat-form-field appearance="fill" class="tnt">
+                                          <mat-label>Operator</mat-label>
+                                          <mat-select formControlName="operator" matNativeControl required>
+                                              <mat-option value="JIO">JIO</mat-option>
+                                              <mat-option value="AIRTEL">AIRTEL</mat-option>
+                                              <mat-option value="VODAFONE-IDEA">VODAFONE-IDEA</mat-option>
+                                              <mat-option value="BSNL">BSNL</mat-option>
+                                            
+                                          </mat-select>
+                                      </mat-form-field >
 
-                             <mat-form-field appearance="fill" class="tnt">
-                              <input matInput placeholder="Amount"/>
-                           </mat-form-field>
+                                       <mat-form-field appearance="fill" class="tnt">
+                                        <input formControlName="amount" matInput placeholder="Amount"/>
+                                     </mat-form-field>
+          
+                                    <button mat-raised-button color="primary"  type="submit"
+                                        class="btn btn-primary btn-lg btn-block mt-4" ><b>Submit</b>
+                                         
+                                    </button>
+                                </form>
+                              
 
-                           
-                          
-                          
-                          <button mat-raised-button color="primary"  type="submit"
-                              class="btn btn-primary btn-lg btn-block mt-4" ><b>Submit</b>
+            
+                            </mat-card-content>
+                            <!-- <img mat-card-image src="../../../assets/payspot/Logo.png">
+                            <mat-card-actions></mat-card-actions> -->
+                            
+                        </mat-card>
+          
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+
+        <mat-tab  label="DTH">
+            <ng-template mat-tab-label>
+                <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+                    <mat-icon class="example-tab-icon">satellite_dish</mat-icon>
+                    <span>DTH</span>
+                </div>
+                
+              </ng-template>
+            <div class="bg-image" >
+                <div class="row d-flex justify-content-center">
+                    <div style="margin-top: 100px;">
+                        <br>                    
+                          <mat-card class="border">
+                            <mat-card-title class="text-center">
+                              <div color="primary" class="over">DTH</div> 
+                            </mat-card-title>
+                            <br>
+                            <mat-divider [inset]="true"></mat-divider>
+                            <mat-divider [vertical]="true"></mat-divider>
+                            <br>
+                            <mat-card-content class="bld">
+                                <form [formGroup]="DthForm">
+                                    <!-- <mat-form-field appearance="outline"> -->
+                                      <mat-form-field appearance="fill" class="tnt">
+                                          <input formControlName="DthNo" matInput placeholder="DTH Number"/>
+                                       </mat-form-field>
+                                      
+                                        <mat-form-field appearance="fill" class="tnt">
+                                          <mat-label>Operator</mat-label>
+                                          <mat-select formControlName="operator" matNativeControl required>
+                                              <mat-option value="JIO">JIO</mat-option>
+                                              <mat-option value="AIRTEL">AIRTEL</mat-option>
+                                              <mat-option value="VODAFONE-IDEA">VODAFONE-IDEA</mat-option>
+                                              <mat-option value="BSNL">BSNL</mat-option>
+                                            
+                                          </mat-select>
+                                      </mat-form-field >
+                                      
+                                       <mat-form-field appearance="fill" class="tnt">
+                                        <input formControlName="amount" matInput placeholder="Amount"/>
+                                     </mat-form-field>
+          
+                                    <button mat-raised-button color="primary"  type="submit"
+                                        class="btn btn-primary btn-lg btn-block mt-4" ><b>Submit</b>
+                                         
+                                    </button>
+                                </form>
+                                
+                            </mat-card-content>
+                            <!-- <img mat-card-image src="../../../assets/payspot/Logo.png">
+                            <mat-card-actions></mat-card-actions> -->
+                            
+                        </mat-card>
+          
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+
+        <mat-tab class="float" label="LIC">
+            <ng-template mat-tab-label class="float">
+                <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+                <span class="material-icons">volunteer_activism</span>
+                <span> LIC </span>
+                </div>
+                                
+              </ng-template>
+            <div class="bg-image" >
+                <div class="row d-flex justify-content-center">
+                    <div style="margin-top: 100px;">
+                        <br>                    
+                          <mat-card class="border">
+                            <mat-card-title class="text-center">
+                              <div color="primary" class="over">LIC</div> 
+                            </mat-card-title>
+                            <br>
+                            <mat-divider [inset]="true"></mat-divider>
+                            <mat-divider [vertical]="true"></mat-divider>
+                            <br>
+                            <mat-card-content class="bld">
+                                <form [formGroup]="LicForm">
+                                    <!-- <mat-form-field appearance="outline"> -->
+                                      <mat-form-field appearance="fill" class="tnt">
+                                          <input formControlName="LicNo" required matInput placeholder="LIC Number"/>
+                                       </mat-form-field>
+                                                                            
+                                       <mat-form-field appearance="fill" class="tnt">
+                                        <input formControlName="amount" required matInput placeholder="Amount"/>
+                                     </mat-form-field>
+
+                                     <mat-form-field appearance="fill" class="tnt">
+                                        <input formControlName="mobile" matInput placeholder="Mobile Number"/>
+                                     </mat-form-field>
+          
+                                    <button mat-raised-button color="primary"  type="submit"
+                                        class="btn btn-primary btn-lg btn-block mt-4" ><b>Submit</b>
+                                         
+                                    </button>
+                                </form>
+
                                
-                          </button>
-                      </form>
+            
+                            </mat-card-content>
+                            <!-- <img mat-card-image src="../../../assets/payspot/Logo.png">
+                            <mat-card-actions></mat-card-actions> -->
+                            
+                        </mat-card>
+          
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
+  </mat-tab-group>
   
-                  </mat-card-content>
-                  <!-- <img mat-card-image src="../../../assets/payspot/Logo.png">
-                  <mat-card-actions></mat-card-actions> -->
-                  
-              </mat-card>
-
-          </div>
-      </div>
-  </div>

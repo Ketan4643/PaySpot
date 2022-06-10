@@ -5,8 +5,8 @@
   </p>
   
   <div class="bg-image" >
-      <div class="row d-flex justify-content-center">
-          <div style="margin-top: 100px;">
+      <div class="row" fxLayout="row wrap">
+          <div style="margin-top: 60px;" fxFlex="70%">
               <br>
               <!-- <div class="view view-cascade gradient-card-header narrower py-2 mx-4 mb-3 page-header-title">
                 <div>
@@ -18,7 +18,7 @@
                 <mat-card class="border">
                 
                   <mat-card-title class="text-center">
-                    <div color="primary">Upload Slip</div> 
+                    <div color="primary" class="over">Upload Slip</div> 
                   </mat-card-title>
                   <mat-card-subtitle></mat-card-subtitle>
                   <br>
@@ -26,7 +26,7 @@
                   <mat-divider [vertical]="true"></mat-divider>
                   <br>
                   <mat-card-content class="bld">
-                      <form>
+                      <form  [formGroup]="SlipForm" >
                           <!-- <mat-form-field appearance="outline"> -->
                             <mat-form-field appearance="fill" class="w-100">
                               <mat-label>Upload Slip</mat-label>
@@ -36,7 +36,7 @@
                             </mat-form-field>
                               <mat-form-field appearance="fill" class="tnt">
                                 <mat-label>Choose Payment Mode</mat-label>
-                                <mat-select  matNativeControl required>
+                                <mat-select formControlName="payMode" matNativeControl required>
                                     <mat-option value="Cash">Cash</mat-option>
                                     <mat-option value="RTGS">RTGS</mat-option>
                                     <mat-option value="NEFT">NEFT</mat-option>
@@ -49,16 +49,16 @@
                             </mat-form-field >
 
                              <mat-form-field appearance="fill" class="tnt">
-                                <input matInput placeholder="Deposit-Amount"/>
+                                <input FormControlName="amount" matInput required placeholder="Deposit-Amount"  >
                              </mat-form-field>
 
                              <mat-form-field appearance="fill" class="tnt">
-                              <input matInput placeholder="Reciept-No/Cheque No./Remarks"/>
+                              <input FormControlName="rctNo" matInput required placeholder="Reciept-No/Cheque No./Remarks" >
                            </mat-form-field>
 
                            <mat-form-field appearance="fill" class="tnt">
                              
-                            <input type="text" matInput  onfocusin="(this.type='date')" onfocusout="(this.type='text')" placeholder="Enter Deposit Date"/>
+                            <input FormControlName="date" type="text" matInput required onfocusin="(this.type='date')" onfocusout="(this.type='text')" placeholder="Enter Deposit Date" >
                          </mat-form-field>
                           
                           
@@ -73,6 +73,29 @@
                   <mat-card-actions></mat-card-actions> -->
                   
               </mat-card>
+
+          </div>
+          <div style="margin-top: 80px;" fxFlex="30%">
+            <mat-card class="new">
+            <mat-card-title  class="text-center"><div color="primary" class="ov">Details</div></mat-card-title>
+            <mat-card-content>
+              <ul>
+                <li><b><u>A/C Name:</u> PaySpot Digital Solutions Private Limited</b></li>
+                <br>
+                <li><b><u>Account type:</u> Current</b></li>
+                <br>
+                <li><b><u>Account Number:</u> 325605000490</b></li>
+                <br>
+                <li><b><u>IFSC Code:</u> ICIC0003256</b></li>
+                <br>
+                <li><b><u>Bank Name:</u> ICICI Bank</b></li>
+                <br>
+              </ul>
+              
+            </mat-card-content>
+            
+            </mat-card>
+            
 
           </div>
       </div>

@@ -5,6 +5,7 @@ import { AdminService } from 'src/app/_services/admin.service';
 import { Chart } from 'angular-highcharts';
 import { columnChartOption } from 'src/app/_charts/column-chart';
 import { donutChartOption } from 'src/app/_charts/donut-chart';
+import { DashData } from 'src/app/_models/dashboardata';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,7 +24,13 @@ export class DashboardComponent implements OnInit {
   nam: String;
   acc: String;
   data: any;
-  
+
+  cardData: DashData[]=[
+    new DashData("12345","prepaid","BSNL","complete","99"),
+    new DashData("67890","postpaid","Airtel","complete","99"),
+    new DashData("54321","prepaid","Jio","complete","99"),
+
+  ]
   constructor(private mediaObserver: MediaObserver, private adminService:AdminService) { }
 
   ngOnInit(): void {

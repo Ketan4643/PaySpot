@@ -106,7 +106,17 @@
         </a>
         <a mat-list-item routerLink="topup" routerLinkActive="link-active">
           <span class="full-width" *ngIf="isExpanded || isShowing">Top-Up Wallet</span>
-          <mat-icon mat-list-icon>folder_open</mat-icon>
+          <mat-icon mat-list-icon>account_balance_wallet</mat-icon>
+        </a>
+
+        <a mat-list-item routerLink="slipupload" routerLinkActive="link-active">
+          <span class="full-width" *ngIf="isExpanded || isShowing">Upload Slip</span>
+          <mat-icon mat-list-icon>file_upload</mat-icon>
+        </a>
+
+        <a mat-list-item routerLink="recharge" routerLinkActive="link-active">
+          <span class="full-width" *ngIf="isExpanded || isShowing">Recharge </span>
+          <mat-icon mat-list-icon>payment</mat-icon>
         </a>
 
         <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
@@ -116,6 +126,8 @@
             expand_more
           </mat-icon>
         </mat-list-item>
+
+        
         
         <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
           <a mat-list-item routerLink="/add-user" routerLinkActive="link-active">Add User</a>

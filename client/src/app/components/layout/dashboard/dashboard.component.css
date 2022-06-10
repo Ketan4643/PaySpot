@@ -15,17 +15,40 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
   background-color: white;
 }
 .tle{
-  box-shadow: #000000;
+  
  
   border:#000000;
- 
-  
+  padding: 10px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .lft{
   text-align: left;
   text-align-last: left;
   align-content: left;
   align-items: left;
+  position: absolute;
+  left: 25px;
+}
+.rt{
+  position:absolute;
+  right:30px;
+}
+.pr{
+  margin:5px;
+  margin-left: 20px;
+}
+.green{
+  background-color:greenyellow;
+  color: green;
+  padding: 8px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  margin-top:10px;
+}
+.sub{
+  color: gray;
+  font-size: small;
+
 }
 .nav
 {
@@ -177,7 +200,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 {
   background-color: #ffffff;
   border: 1px solid #86aeac;
-  box-shadow: 10px 10px 0 0 grey ;
   text-emphasis-color: black;
 }
 

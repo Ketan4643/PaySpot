@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PayspotFinalProject\\PayspotAPI\\PayspotAPI.csproj": {}
+    "D:\\PayspotFinalProject\\PaySpotAPI\\PayspotAPI.csproj": {}
   },
   "projects": {
-    "D:\\PayspotFinalProject\\PayspotAPI\\PayspotAPI.csproj": {
+    "D:\\PayspotFinalProject\\PaySpotAPI\\PayspotAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PayspotFinalProject\\PayspotAPI\\PayspotAPI.csproj",
+        "projectUniqueName": "D:\\PayspotFinalProject\\PaySpotAPI\\PayspotAPI.csproj",
         "projectName": "PayspotAPI",
-        "projectPath": "D:\\PayspotFinalProject\\PayspotAPI\\PayspotAPI.csproj",
+        "projectPath": "D:\\PayspotFinalProject\\PaySpotAPI\\PayspotAPI.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "D:\\PayspotFinalProject\\PayspotAPI\\obj\\",
+        "outputPath": "D:\\PayspotFinalProject\\PaySpotAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
