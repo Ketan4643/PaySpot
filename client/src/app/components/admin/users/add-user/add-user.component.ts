@@ -4,6 +4,7 @@ import { debounceTime, tap, switchMap, startWith, map } from "rxjs/operators";
 import { States } from 'src/app/_models/states';
 import { AdminService } from 'src/app/_services/admin.service';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import { AddAgentService } from 'src/app/_services/add-agent.service';
 
 
 @Component({
@@ -27,13 +28,14 @@ export class AddUserComponent implements OnInit {
   kycInfo: FormGroup;
   addressInfo: FormArray = new FormArray([]);
   private selectedFile: File;
-
+  
   onFileSelect(event) {
     this.selectedFile = event.target.files[0];
     console.log(this.selectedFile.name);
   }
 
-  constructor(private adminService: AdminService, private formBuilder: FormBuilder) {
+  constructor(private adminService: AdminService, private formBuilder: FormBuilder,
+              private addAgentService: AddAgentService ) {
     // this.formGroup = new FormGroup({
     //   basicInfo: new FormGroup({
     //     userRoles: new FormControl(0, [Validators.required]),
@@ -123,6 +125,24 @@ export class AddUserComponent implements OnInit {
   };
 
     
+  addAgent(){
+    var basicmodel=this.basicInfo.value;
+    var model=JSON.stringify(basicmodel);
+    this.addAgentService.addAgent(model).subscribe(response => {
+        console.log(response);
+      })
+    
+
+    // var addressModel=this.homeAddressInfo.value;
+    // var value2=  JSON.stringify(addressModel);
+    // this.addAgentService.addAddress(value2);
+
+    // var kycModel=this.homeAddressInfo.value;
+    // var value3=  JSON.stringify(kycModel);
+    // this.addAgentService.addKYC(value3);
+
+  }
+
 
   //returns the form control object based on the form control name
   getFormControl(controlName: string): FormControl {
@@ -151,5 +171,7 @@ export class AddUserComponent implements OnInit {
 
     return errorMessage;
   }
+
+  
 
 }

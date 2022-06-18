@@ -26,7 +26,8 @@ import { UploadSlipComponent } from './components/upload-slip/upload-slip.compon
     UtilitiesComponent,
     TopUpComponent,
     RechargeComponent,
-    UploadSlipComponent
+    UploadSlipComponent,
+    
   ],
   imports: [
     BrowserModule,

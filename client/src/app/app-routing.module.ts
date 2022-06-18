@@ -14,16 +14,18 @@ import { UtilitiesComponent } from './components/utilities/utilities.component';
 import { TopUpComponent } from './components/top-up/top-up.component';
 import { UploadSlipComponent } from './components/upload-slip/upload-slip.component';
 import { RechargeComponent} from './components/recharge/recharge.component';
+import { HomeComponent } from './component/home/home.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'login', component: LoginComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'util', component: UtilitiesComponent },
   { path: 'topup', component: TopUpComponent },
   { path: 'slipupload', component: UploadSlipComponent },
   { path: 'recharge', component: RechargeComponent },
+  { path: 'home', component: HomeComponent },
 
 
 

@@ -305,7 +305,18 @@
   </mat-step>
   
 
-  <mat-step label="Finish">Four</mat-step>
+  <mat-step label="Finish">
+    <mat-card style="text-align: center; align-items: center;">
+      
+      <mat-card-title >
+         Are you sure you want to submit?
+      </mat-card-title>
+      <br><br>
+      <button mat-raised-button color="primary" type="submit" (click)="addAgent()">
+        Submit
+      </button>
+    </mat-card>
+  </mat-step>
 </mat-horizontal-stepper>
 <div class="mt-10">
   {{formGroup.value | json}}

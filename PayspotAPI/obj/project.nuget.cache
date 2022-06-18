@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "qhqspwS7R1Lb0d3iwdTDM4b1G7AknEQiFsQS04LZaHLAeyCgX73Ke9FtJ1w/TQI9KQfl50F7QijpDuFPMe2U2g==",
+  "dgSpecHash": "tH2BAGwaadYEgKcxGIL52c9/uO4WEnf/O3y4BfieIAjlQRkgerhanR2zFiEnWOkI3SAn8Xfdg+hssEVUYLQ7ag==",
   "success": true,
-  "projectFilePath": "D:\\PayspotFinalProject\\PaySpotAPI\\PayspotAPI.csproj",
+  "projectFilePath": "D:\\PayspotFinalProject\\PayspotAPI\\PayspotAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

@@ -13,8 +13,6 @@ export class UploadSlipComponent implements OnInit {
     amount:new FormControl(''),
     date:new FormControl(''),
     rctNo:new FormControl(''),
-
-
   });
 
   constructor() { }
