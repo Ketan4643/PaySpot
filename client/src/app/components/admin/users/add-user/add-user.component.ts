@@ -128,7 +128,8 @@ export class AddUserComponent implements OnInit {
   addAgent(){
     var basicmodel=this.basicInfo.value;
     var model=JSON.stringify(basicmodel);
-    this.addAgentService.addAgent(model).subscribe(response => {
+    console.log(model);
+    this.addAgentService.addAgent(basicmodel).subscribe(response => {
         console.log(response);
       })
     
