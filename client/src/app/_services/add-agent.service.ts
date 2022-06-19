@@ -19,19 +19,26 @@ export class AddAgentService {
       map(( response: any)=>{
         const xyz= response;
       })
-
-    )
+    );
     // subscribe(status=> console.log(JSON.stringify(status)));
         
   }
 
   addKYC(model:any){
-    return this.http.post(this.baseUrl + 'admin/update-kyc', model)
+    return this.http.post(this.baseUrl + 'admin/update-kyc', model).pipe(
+      map(( response: any)=>{
+        const xyz= response;
+      })
+    );
     // subscribe(status=> console.log(JSON.stringify(status)));
   }
 
   addAddress(model:any){
-    return this.http.post(this.baseUrl + 'admin/update-address', model)
+    return this.http.post(this.baseUrl + 'admin/update-address', model).pipe(
+      map(( response: any)=>{
+        const xyz= response;
+      })
+    );
     // subscribe(status=> console.log(JSON.stringify(status)));
   }
 }

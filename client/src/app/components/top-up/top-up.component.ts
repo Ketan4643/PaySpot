@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CheckboxControlValueAccessor } from '@angular/forms';
+import { CheckboxControlValueAccessor, FormBuilder } from '@angular/forms';
+import { AdminService } from 'src/app/_services/admin.service';
+import { TopupService } from 'src/app/_services/topup.service';
 
 export interface PeriodicElement {
   name: string;
@@ -40,11 +42,20 @@ export class TopUpComponent implements OnInit {
   // applyfilter(){
   //   this.data.filter=this.searchKey.trim().toLowerCase();
   // }
-  constructor() { }
+  constructor(private adminService: AdminService, private formBuilder: FormBuilder,
+    private topupService: TopupService ) { }
 
   ngOnInit(): void {
   }
 
-
+  topup(dataSource){
+    var basicmodel=dataSource;
+    var model=JSON.stringify(basicmodel);
+    console.log(model);
+    this.topupService.topup(basicmodel).subscribe(response => {
+        console.log(response);
+      })
+    
+  }
 
 }
